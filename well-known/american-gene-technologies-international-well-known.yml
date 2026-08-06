@@ -1,0 +1,57 @@
+generated: '2026-08-06'
+method: probed
+source: live HTTPS probes of the americangene.com hosts
+note: >-
+  Every /.well-known/ path probed on both www.americangene.com and the apex americangene.com
+  (which 301s to www) returned HTTP 404 with the site's WordPress 404 template (text/html). No
+  well-known discovery document of any kind is published — no RFC 9116 security.txt, no OIDC or
+  OAuth metadata, no RFC 9727 api-catalog, no A2A agent card, no ai-plugin manifest. Recorded as an
+  honest zero: nothing was saved because nothing returned 200. The site's only discovery surface is
+  the WordPress REST route index at /wp-json/, which is catalogued in openapi/ instead.
+hosts:
+- https://www.americangene.com
+- https://americangene.com
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/oauth-protected-resource
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  status: 404
+- path: /.well-known/mcp.json
+  status: 404
+- path: /.well-known/dnt-policy.txt
+  status: 404
+- path: /.well-known/change-password
+  status: 404
+alternate_discovery:
+- path: /wp-json/
+  status: 200
+  content_type: application/json
+  note: >-
+    WordPress REST API index — 576 routes across 23 namespaces, plus the advertised
+    application-passwords authentication method. Captured in
+    openapi/_source/american-gene-technologies-international-wp-options.json and modelled in
+    openapi/american-gene-technologies-international-content-openapi.yml.
+- path: /robots.txt
+  status: 200
+  note: 'Yoast-generated; User-agent: * with an empty Disallow (nothing disallowed) and a sitemap
+    pointer to https://www.americangene.com/sitemap_index.xml.'
+- path: /sitemap_index.xml
+  status: 200
+- path: /feed/
+  status: 200
+  note: Site-wide RSS 2.0 feed.
+x-evidence:
+  fetched: '2026-08-06'
+  probe: HTTPS GET with redirects followed, 20s timeout

@@ -1,0 +1,80 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the American Gene Technologies Content API
+  version: 1.0.0
+extends: openapi/american-gene-technologies-international-content-openapi.yml
+x-generated: '2026-08-06'
+x-method: generated
+x-source: >-
+  API Evangelist enrichment pipeline. Captures the annotations API Evangelist added on top of the
+  contract derived from https://www.americangene.com/wp-json/ so the derived OpenAPI can be
+  regenerated from the provider surface without losing our editorial layer.
+actions:
+- target: $.info
+  description: Record provenance and the independent rating context on the spec itself.
+  update:
+    x-apievangelist-profile: https://apis.io/providers/american-gene-technologies-international/
+    x-apievangelist-provenance: >-
+      Derived from the WordPress REST route index and per-route OPTIONS self-description published
+      anonymously at https://www.americangene.com/wp-json/ on 2026-08-06. Not published by American
+      Gene Technologies. Only operations verified to return data without credentials are modelled.
+    x-apievangelist-not-a-product: >-
+      American Gene Technologies markets no API and runs no developer program. This surface is the
+      corporate WordPress site's own content API.
+- target: $.info
+  description: Bind the artifacts that carry the runtime semantics this spec cannot express.
+  update:
+    x-artifacts:
+      conventions: conventions/american-gene-technologies-international-conventions.yml
+      errors: errors/american-gene-technologies-international-problem-types.yml
+      data_model: data-model/american-gene-technologies-international-data-model.yml
+      lifecycle: lifecycle/american-gene-technologies-international-lifecycle.yml
+      conformance: conformance/american-gene-technologies-international-conformance.yml
+      authentication: authentication/american-gene-technologies-international-authentication.yml
+      examples: examples/american-gene-technologies-international-examples.yml
+      agentic_access: agentic-access/american-gene-technologies-international-agentic-access.yml
+      skills: skills/_index.yml
+- target: $.paths['/wp/v2/gene_therapies'].get
+  description: Flag the AGT-specific collections that carry first-party subject-matter content.
+  update:
+    x-agt-first-party: true
+    x-item-count-observed: 4
+- target: $.paths['/wp/v2/patent'].get
+  update:
+    x-agt-first-party: true
+    x-item-count-observed: 53
+- target: $.paths['/wp/v2/news-releases'].get
+  update:
+    x-agt-first-party: true
+    x-item-count-observed: 64
+- target: $.paths['/wp/v2/in-the-news'].get
+  update:
+    x-agt-first-party: true
+    x-item-count-observed: 75
+- target: $.paths['/wp/v2/blog'].get
+  update:
+    x-agt-first-party: true
+    x-item-count-observed: 106
+    x-note: >-
+      The AGT blog lives on this custom post type. The WordPress core /wp/v2/posts collection is
+      empty on this site, so a client that reads only /wp/v2/posts will see nothing.
+- target: $.paths['/wp/v2/agt_advisors'].get
+  update:
+    x-agt-first-party: true
+    x-item-count-observed: 7
+- target: $.paths['/wp/v2/agt-newsletters'].get
+  update:
+    x-agt-first-party: true
+    x-item-count-observed: 18
+- target: $.paths['/wp/v2/posts'].get
+  description: Warn that the core posts collection is empty on this site.
+  update:
+    x-item-count-observed: 0
+    x-note: Empty on this site. AGT publishes its blog on the custom /wp/v2/blog collection instead.
+- target: $.paths['/wp/v2/search'].get
+  description: Note that search is the only cross-entity entry point.
+  update:
+    x-item-count-observed: 409
+    x-note: >-
+      The only operation that spans post types. Returns stubs; resolve the full object by following
+      _links.self.

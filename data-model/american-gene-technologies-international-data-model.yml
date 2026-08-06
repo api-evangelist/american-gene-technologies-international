@@ -1,0 +1,256 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/american-gene-technologies-international-content-openapi.yml, the registered post types
+  and taxonomies published at /wp-json/wp/v2/types and /wp-json/wp/v2/taxonomies, and the _links
+  relations observed on live items (2026-08-06).
+note: >-
+  The entity graph of the American Gene Technologies Content API. Identity is a site-scoped integer
+  WordPress post ID (there are no prefixed IDs). Relationships are expressed two ways in the payload -
+  as integer arrays on taxonomy-named fields (for example gene_therapy_phase - [61]) and as HAL-style
+  _links entries (wp:term, wp:featuredmedia, author, wp:attachment). Item counts are the live
+  X-WP-Total values observed on 2026-08-06.
+
+identity:
+  scheme: integer
+  field: id
+  scope: site
+  note: >-
+    IDs are not contiguous and are shared across post types. slug is the stable human-readable
+    identifier and is what the public URLs use.
+
+entities:
+- name: GeneTherapy
+  rest_base: gene_therapies
+  path: /wp/v2/gene_therapies
+  count: 4
+  description: >-
+    Reference entries for approved gene therapies (Zolgensma, Yescarta, Kymriah, Zynteglo) used as
+    educational context on the AGT site.
+  key_fields: [id, slug, title, content, link, date, modified, status, gene_therapy_phase]
+  relationships:
+  - type: has_many
+    target: GeneTherapyPhase
+    via: gene_therapy_phase
+    link_rel: wp:term
+  - type: has_many
+    target: Media
+    via: _links.wp:attachment
+
+- name: Patent
+  rest_base: patent
+  path: /wp/v2/patent
+  count: 53
+  description: AGT patent portfolio entries.
+  key_fields: [id, slug, title, content, link, date, modified, featured_media]
+  relationships:
+  - type: has_one
+    target: Media
+    via: featured_media
+    link_rel: wp:featuredmedia
+
+- name: NewsRelease
+  rest_base: news-releases
+  path: /wp/v2/news-releases
+  count: 64
+  description: AGT press releases, the earliest observed dating to the company's public announcements.
+  key_fields: [id, slug, title, content, link, date, modified, author, featured_media, menu_order,
+    new-releases-hiv-tag, featured-media]
+  relationships:
+  - type: belongs_to
+    target: Author
+    via: author
+  - type: has_one
+    target: Media
+    via: featured_media
+  - type: has_many
+    target: NewsReleasesHivTag
+    via: new-releases-hiv-tag
+  - type: has_many
+    target: FeaturedMediaTerm
+    via: featured-media
+
+- name: InTheNews
+  rest_base: in-the-news
+  path: /wp/v2/in-the-news
+  count: 75
+  description: Third-party press coverage of AGT.
+  relationships:
+  - type: has_many
+    target: InTheNewsHivTag
+    via: in-the-news-hiv-tag
+  - type: has_many
+    target: FeaturedMediaTerm
+    via: featured-media
+
+- name: BlogPost
+  rest_base: blog
+  path: /wp/v2/blog
+  count: 106
+  description: >-
+    The AGT blog. A dedicated custom post type - the WordPress core /wp/v2/posts collection is empty
+    (0 items) on this site, so an agent that reads only /wp/v2/posts sees nothing.
+  key_fields: [id, slug, title, content, link, date, modified, author, featured_media, parent,
+    blog_categories, blog_tags, blog-post-hiv-tag, featured-media]
+  relationships:
+  - type: belongs_to
+    target: Author
+    via: author
+  - type: has_one
+    target: Media
+    via: featured_media
+  - type: has_many
+    target: BlogCategory
+    via: blog_categories
+  - type: has_many
+    target: BlogTag
+    via: blog_tags
+  - type: has_many
+    target: BlogPostHivTag
+    via: blog-post-hiv-tag
+
+- name: Advisor
+  rest_base: agt_advisors
+  path: /wp/v2/agt_advisors
+  count: 7
+  description: >-
+    AGT scientific and clinical advisory board members - Ely Benaim MD, W. David Hardy MD AAHIVS,
+    Fred Nyberg PhD, Jerry Vockley MD PhD, Dean W. Felsher MD PhD, Robert Clarke PhD DSc, and
+    John J. Rossi PhD.
+  relationships: []
+
+- name: Job
+  rest_base: agtjobs
+  path: /wp/v2/agtjobs
+  count: 0
+  description: Open positions. The collection is registered and returns 200 but is currently empty.
+  relationships:
+  - type: has_many
+    target: JobCategory
+    via: agtjobcategories
+
+- name: Newsletter
+  rest_base: agt-newsletters
+  path: /wp/v2/agt-newsletters
+  count: 18
+  description: Archived AGT newsletters.
+  relationships:
+  - type: has_many
+    target: NewsletterHivTag
+    via: newsletter-hiv-tag
+
+- name: Milestone
+  rest_base: milestones
+  path: /wp/v2/milestones
+  count: 1
+  description: Company milestone entries used by the site timeline.
+  relationships:
+  - type: has_many
+    target: PagesHivTag
+    via: pages-hiv-tag
+
+- name: Video
+  rest_base: videos
+  path: /wp/v2/videos
+  count: 5
+  relationships:
+  - type: has_many
+    target: VideoCategory
+    via: agt_video_category
+
+- name: VideoSeriesEpisode
+  rest_base: video_series
+  path: /wp/v2/video_series
+  count: 0
+  relationships:
+  - type: has_many
+    target: VideoSeriesCategory
+    via: video_series_categories
+
+- name: YoungMinds
+  rest_base: young_minds
+  path: /wp/v2/young_minds
+  count: 4
+  description: Gene and cell therapy explainers written for a young audience.
+  relationships:
+  - type: has_many
+    target: YoungMindCategory
+    via: young_mind_categories
+
+- name: Page
+  rest_base: pages
+  path: /wp/v2/pages
+  count: 72
+  description: >-
+    Corporate site pages, including the hierarchy under /about-us/, /technology/ and /pipeline/.
+    Self-referential via parent.
+  relationships:
+  - type: belongs_to
+    target: Page
+    via: parent
+  - type: has_many
+    target: PagesHivTag
+    via: pages-hiv-tag
+  - type: has_one
+    target: Media
+    via: featured_media
+
+- name: Media
+  rest_base: media
+  path: /wp/v2/media
+  count: 2997
+  description: The site media library - images, PDFs and other attachments.
+  relationships:
+  - type: belongs_to
+    target: Page
+    via: post
+    note: Attachments carry a post field pointing at the item they were uploaded to, when any.
+
+- name: Author
+  rest_base: users
+  path: /wp/v2/users
+  count: 2
+  description: >-
+    Content authors exposed in the public view context. Only display name, slug, author archive link
+    and gravatar URLs are returned anonymously.
+
+taxonomies:
+- name: GeneTherapyPhase
+  rest_base: gene_therapy_phase
+  applies_to: [GeneTherapy]
+  terms: 1
+  observed_terms:
+  - id: 61
+    slug: fda-approved
+    name: FDA Approved
+    count: 4
+- {name: BlogCategory, rest_base: blog_categories, applies_to: [BlogPost], terms: 15}
+- {name: BlogTag, rest_base: blog_tags, applies_to: [BlogPost], terms: 4}
+- {name: JobCategory, rest_base: agtjobcategories, applies_to: [Job], terms: 0}
+- {name: VideoCategory, rest_base: agt_video_category, applies_to: [Video], terms: 1}
+- {name: VideoSeriesCategory, rest_base: video_series_categories, applies_to: [VideoSeriesEpisode], terms: 1}
+- {name: YoungMindCategory, rest_base: young_mind_categories, applies_to: [YoungMinds], terms: 1}
+- {name: Category, rest_base: categories, applies_to: [Post], terms: 2}
+- {name: Tag, rest_base: tags, applies_to: [Post], terms: 6}
+- {name: InTheNewsHivTag, rest_base: in-the-news-hiv-tag, applies_to: [InTheNews], terms: 1}
+- {name: NewsReleasesHivTag, rest_base: new-releases-hiv-tag, applies_to: [NewsRelease], terms: 1}
+- {name: BlogPostHivTag, rest_base: blog-post-hiv-tag, applies_to: [BlogPost], terms: 1}
+- {name: PagesHivTag, rest_base: pages-hiv-tag, applies_to: [Page, Milestone], terms: 1}
+- {name: NewsletterHivTag, rest_base: newsletter-hiv-tag, applies_to: [Newsletter], terms: 1}
+- {name: FeaturedMediaTerm, rest_base: featured-media, applies_to: [BlogPost, InTheNews, NewsRelease], terms: 0}
+
+cross_cutting:
+  search:
+    path: /wp/v2/search
+    indexed_items: 409
+    returns: 'Lightweight stubs - id, title, url, type, subtype, _links.self (embeddable).'
+    note: >-
+      The single entry point that spans entities. Resolve the full object by following
+      _links.self, which points at the correct typed collection.
+  discovery:
+    types: /wp/v2/types
+    taxonomies: /wp/v2/taxonomies
+    statuses: /wp/v2/statuses
+    note: >-
+      The graph is self-describing at runtime - /wp/v2/types names every rest_base and the
+      taxonomies bound to it, and each route's OPTIONS response carries the item JSON Schema.

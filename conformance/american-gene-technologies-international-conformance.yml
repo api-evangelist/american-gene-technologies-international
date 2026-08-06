@@ -1,0 +1,116 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/american-gene-technologies-international-content-openapi.yml plus live probes of
+  https://www.americangene.com/wp-json/ (2026-08-06).
+note: >-
+  Which cross-cutting standards the American Gene Technologies Content API actually conforms to.
+  Everything marked conforms - true was observed on a live response or read out of the route's own
+  OPTIONS self-description. American Gene Technologies makes no compliance or conformance claim for
+  this surface anywhere on its site, so no Compliance pointer is emitted - nothing was published to
+  point at.
+
+standards:
+- id: http-1.1-rest
+  conforms: true
+  evidence: >-
+    Resource-oriented paths, GET-only read surface, standard status codes (200/400/401/404),
+    application/json bodies.
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    openapi/american-gene-technologies-international-content-openapi.yml - 68 operations, unique
+    operationIds, 19 tags. Derived by API Evangelist from the provider's own OPTIONS
+    self-description; AGT does not publish an OpenAPI itself.
+  x-note: derived-not-published
+- id: json-schema
+  conforms: true
+  evidence: >-
+    Every route answers HTTP OPTIONS with a JSON Schema for its item representation and a typed args
+    map (type, enum, default, minimum, maximum, format) for its parameters. This is the strongest
+    machine-readable signal on this surface.
+- id: oembed-1.0
+  conforms: true
+  evidence: >-
+    /wp-json/oembed/1.0/embed is registered and returns 200 for an americangene.com URL; the
+    oembed/1.0 namespace is listed in the API index.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are the WordPress envelope {code, message, data.status} served as application/json, not
+    application/problem+json. See errors/american-gene-technologies-international-problem-types.yml.
+- id: rfc7617-http-basic
+  conforms: true
+  evidence: >-
+    The API index advertises authentication.application-passwords, which is HTTP Basic over TLS,
+    with the authorization endpoint https://www.americangene.com/wp-admin/authorize-application.php.
+    Not required for any operation modelled here.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 security scheme; /.well-known/oauth-authorization-server and
+    /.well-known/oauth-protected-resource both 404.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returned 404.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returned 404 on both www.americangene.com and americangene.com.
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returned 404.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header on any probed response; no deprecation policy published.
+- id: a2a-agent-card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json both returned 404 on both hosts. No
+    agent card is published, so no a2a artifact is written.
+- id: model-context-protocol
+  conforms: false
+  evidence: >-
+    No MCP namespace is registered - /wp-json/mcp returned 404 (rest_no_route) and no mcp entry
+    appears in the 23 namespaces published by the API index.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No event, streaming or webhook surface is exposed anonymously. Not penalized - a read-only
+    content API has no event surface to describe.
+- id: hal-hypermedia
+  conforms: partial
+  evidence: >-
+    Items carry a _links object with self, collection, about, author, wp:featuredmedia,
+    wp:attachment, wp:term and version-history relations plus a curies map to https://api.w.org/{rel}.
+    This is HAL-shaped rather than strict HAL - the media type is application/json, not
+    application/hal+json.
+- id: cors
+  conforms: true
+  evidence: >-
+    Access-Control-Allow-Headers (Authorization, X-WP-Nonce, Content-Disposition, Content-MD5,
+    Content-Type) and Access-Control-Expose-Headers (X-WP-Total, X-WP-TotalPages, Link) are returned
+    on collection responses.
+- id: robots-exclusion
+  conforms: true
+  evidence: >-
+    robots.txt is published (Yoast block, empty Disallow - nothing excluded) with a sitemap pointer.
+    REST responses additionally carry X-Robots-Tag - noindex.
+- id: rate-limit-headers
+  conforms: false
+  evidence: >-
+    No RateLimit, X-RateLimit or Retry-After headers observed on any response. Throttling, if any,
+    is applied at the Cloudflare/Kinsta edge and is not signalled to the client.
+- id: idempotency-key
+  conforms: false
+  evidence: >-
+    No idempotency contract. Every modelled operation is a safe GET, so idempotency is a property of
+    the HTTP method here rather than of the API. No Idempotency pointer is emitted.
+
+compliance_program:
+  published: false
+  detail: >-
+    No trust center, no named certification (SOC 2, ISO 27001, HIPAA, GDPR or otherwise) and no
+    security or compliance page were found. trust.americangene.com and security.americangene.com do
+    not resolve; the automated security-program probe returned vdp=none trust=none. AGT is a
+    pre-commercial clinical-stage biotech and publishes no such program, so no Compliance or
+    TrustCenter pointer is emitted.

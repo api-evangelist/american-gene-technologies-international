@@ -1,0 +1,65 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/american-gene-technologies-international-content-openapi.yml and live probes of
+  americangene.com (2026-08-06).
+note: >-
+  American Gene Technologies publishes no API lifecycle commitments of any kind for the WordPress
+  REST content surface catalogued here - no versioning policy, no deprecation policy, no Sunset or
+  Deprecation header support, no SLA and no status page. That is recorded honestly below rather
+  than left blank. The lifecycle of the wp/v2 contract is governed upstream by the WordPress
+  project, not by AGT.
+
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  location: /wp-json/{namespace}/
+  namespaces_registered: 23
+  policy_url: null
+  upstream_policy: https://developer.wordpress.org/rest-api/extending-the-rest-api/
+  detail: >-
+    The version is the namespace segment. wp/v2 has been the stable WordPress core namespace since
+    WordPress 4.7 (2016). AGT states nothing about which namespaces it will keep registered - the
+    plugin namespaces (jetpack/v4, yoast/v1, gf/v2, ninjatables/v2, leadin/v1, the_grid/v1,
+    wpcom/v2, wpcom/v3, bsf-core/v1, font-awesome/v1 and the rest) appear and disappear with plugin
+    installs and are not a stable contract.
+
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No RFC 8594 Sunset header and no Deprecation header were returned on any probed response, and
+    no deprecation policy page exists. No Deprecation pointer is emitted for this provider.
+
+deprecated_operations: []
+
+sla:
+  url: null
+  uptime_target: null
+  detail: No service-level agreement or uptime commitment is published for this surface.
+
+status_page:
+  url: null
+  detail: >-
+    No status page was found - status.americangene.com does not resolve and no status link exists on
+    the site. No StatusPage pointer is emitted.
+
+changelog:
+  url: null
+  detail: >-
+    No dated API changelog exists. The nearest published dated stream is the news release archive
+    (https://www.americangene.com/news-releases/, 64 items) and the blog
+    (https://www.americangene.com/blog/, 106 items), both of which are corporate rather than
+    technical and are wired as News / Blog pointers rather than as ChangeLog.
+
+stability_observations:
+  content_volatility: >-
+    Item counts observed 2026-08-06 - gene_therapies 4, patent 53, news-releases 64, in-the-news 75,
+    blog 106, agt-newsletters 18, agt_advisors 7, milestones 1, videos 5, young_minds 4, pages 72,
+    media 2997, search index 409. The core WordPress /wp/v2/posts collection is empty (0), as are
+    agtjobs and video_series - a client should not treat an empty collection as an outage.
+  infrastructure: >-
+    Served by Kinsta behind Cloudflare (ki-edge v=28.4.5, x-kinsta-cache, cf-ray headers observed).
+    TLS 1.3; leaf certificate expiring 2026-11-02. No HSTS.
+  see: security/american-gene-technologies-international-domain-security.yml

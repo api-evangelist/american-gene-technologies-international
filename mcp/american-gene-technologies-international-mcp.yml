@@ -1,0 +1,73 @@
+generated: '2026-08-06'
+method: derived
+status: candidate
+published: false
+source: openapi/american-gene-technologies-international-content-openapi.yml
+note: >-
+  American Gene Technologies publishes NO Model Context Protocol server. This was verified, not
+  assumed - /wp-json/mcp returns 404 rest_no_route, no mcp namespace appears among the 23 registered
+  in the API index at https://www.americangene.com/wp-json/, /.well-known/mcp.json returns 404 on
+  both hosts, and the WordPress MCP Adapter plugin (which supplies /wp-json/mcp/ on some WordPress
+  sites in this catalogue) is not installed. No MCPServer pointer is emitted in apis.yml, and none
+  should be until AGT actually publishes one.
+
+  The tools below are a DERIVED CANDIDATE mapping only - what a read-only MCP server over this
+  content surface would expose if someone built one, with each tool bound to a real operationId in
+  the derived OpenAPI so its input schema is the operation's real parameter set. This is a design
+  starting point, not a claim about AGT.
+
+probe_evidence:
+- url: https://www.americangene.com/wp-json/mcp
+  status: 404
+  body_code: rest_no_route
+- url: https://www.americangene.com/.well-known/mcp.json
+  status: 404
+- url: https://www.americangene.com/wp-json/
+  status: 200
+  note: 23 namespaces published; none is an MCP namespace.
+
+server:
+  name: american-gene-technologies-content
+  transport: http
+  url: null
+  auth: none required (the underlying operations are all anonymously readable)
+
+tools:
+- name: search_agt_content
+  description: Search across all American Gene Technologies site content (409 indexed items).
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#search_content
+- name: list_news_releases
+  description: List AGT press releases, newest first. Supports date and modified-date filters.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_news_releases
+- name: list_press_coverage
+  description: List third-party press coverage of AGT.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_in_the_news
+- name: list_blog_posts
+  description: List AGT blog posts. Note the core /wp/v2/posts collection is empty on this site.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_blog
+- name: list_newsletters
+  description: List archived AGT newsletters.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_agt_newsletters
+- name: list_patents
+  description: List AGT patent portfolio entries.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_patent
+- name: get_patent
+  description: Retrieve one patent entry by ID.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#get_patent
+- name: list_gene_therapies
+  description: >-
+    List the gene therapy reference entries. These are approved third-party therapies published as
+    educational context, not AGT's own pipeline.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_gene_therapies
+- name: list_advisors
+  description: List the AGT scientific and clinical advisory board.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_agt_advisors
+- name: list_jobs
+  description: List open positions at AGT.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_agtjobs
+- name: get_page
+  description: Retrieve a corporate page (pipeline, technology, about) by ID.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#get_pages
+- name: describe_content_types
+  description: List every registered post type and the taxonomies bound to it.
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_types

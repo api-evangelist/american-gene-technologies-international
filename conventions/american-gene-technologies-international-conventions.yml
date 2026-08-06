@@ -1,0 +1,158 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/american-gene-technologies-international-content-openapi.yml plus live response headers
+  observed on https://www.americangene.com/wp-json/wp/v2/* on 2026-08-06. Upstream contract:
+  https://developer.wordpress.org/rest-api/
+scope: >-
+  Cross-cutting request/response semantics for the American Gene Technologies Content API. These
+  are WordPress REST API conventions, not conventions AGT authored or documents — AGT publishes no
+  developer documentation for this surface. Everything below was observed on live anonymous calls
+  or taken from the per-route OPTIONS self-description.
+
+authentication:
+  style: none-required
+  detail: >-
+    Every operation modelled in this repo returns 200 without credentials. WordPress Application
+    Passwords (HTTP Basic over TLS) is the only method the API index advertises, at
+    authentication.application-passwords, with the authorization endpoint
+    https://www.americangene.com/wp-admin/authorize-application.php. It is required only for the
+    write and administration routes this profile deliberately excludes.
+  see: authentication/american-gene-technologies-international-authentication.yml
+
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency key header, parameter or contract exists. Every operation modelled here is a
+    safe GET, so idempotency is a property of the HTTP method rather than of an API contract. No
+    Idempotency pointer is emitted for this provider.
+
+pagination:
+  style: page-and-per-page
+  params:
+  - name: page
+    in: query
+    type: integer
+    default: 1
+    minimum: 1
+    description: Current page of the collection.
+  - name: per_page
+    in: query
+    type: integer
+    default: 10
+    minimum: 1
+    maximum: 100
+    description: Maximum number of items returned per page.
+  - name: offset
+    in: query
+    type: integer
+    description: Offset the result set by a specific number of items.
+  response_headers:
+  - name: X-WP-Total
+    description: Total number of items in the full collection.
+  - name: X-WP-TotalPages
+    description: Total number of pages available at the current per_page.
+  link_header: >-
+    Collection responses carry a Link header with rel="next"/rel="prev" when more pages exist.
+  overflow_behavior: >-
+    Requesting a page beyond X-WP-TotalPages returns HTTP 400 with code rest_post_invalid_page_number.
+    Requesting per_page above 100 returns HTTP 400 with code rest_invalid_param.
+
+filtering_and_sorting:
+  search:
+    param: search
+    description: Free-text match within a single collection.
+  date_filters: [after, before, modified_after, modified_before]
+  id_filters: [include, exclude]
+  slug_filter: slug
+  ordering:
+    order: {values: [asc, desc], default: desc}
+    orderby: {values: [author, date, id, include, modified, parent, relevance, slug, include_slugs, title], default: date}
+  taxonomy_filters: >-
+    Each post type accepts filters named for the taxonomies registered against it — for example
+    gene_therapy_phase on /wp/v2/gene_therapies, and blog_categories / blog_tags on /wp/v2/blog.
+
+field_selection:
+  sparse_fieldsets:
+    param: _fields
+    description: >-
+      Comma-separated list of top-level properties to return. Verified working — for example
+      /wp/v2/pages?_fields=id,slug,link,title returns only those keys.
+  embedding:
+    param: _embed
+    description: >-
+      Inlines linked resources (author, featured media, taxonomy terms) into an _embedded object,
+      following the HAL-style _links block on every item.
+  context:
+    param: context
+    values: [view, embed, edit]
+    default: view
+    description: >-
+      Determines which fields are present. Anonymous callers get view and embed; edit requires
+      authentication.
+  envelope:
+    param: _envelope
+    description: Wraps body, status and headers into a single JSON object for clients that cannot read headers.
+
+hypermedia:
+  style: HAL-like
+  detail: >-
+    Every item carries a _links object with self, collection, about (the post-type descriptor) and,
+    where applicable, author, wp:featuredmedia, wp:attachment, wp:term and version-history relations,
+    plus a curies entry mapping the wp: prefix to https://api.w.org/{rel}.
+
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  detail: >-
+    The version lives in the namespace segment of the path (/wp-json/wp/v2/...). The namespace list
+    is published in the API index. AGT publishes no versioning policy of its own; the wp/v2 contract
+    is governed upstream by WordPress core.
+  see: lifecycle/american-gene-technologies-international-lifecycle.yml
+
+error_envelope:
+  format: wordpress-rest-error
+  rfc9457: false
+  content_type: application/json
+  shape:
+    code: Machine-readable error code string, e.g. rest_post_invalid_id.
+    message: Human-readable message.
+    data.status: The HTTP status code, repeated in the body.
+  see: errors/american-gene-technologies-international-problem-types.yml
+
+rate_limiting:
+  documented: false
+  headers_observed: []
+  detail: >-
+    No RateLimit, X-RateLimit or Retry-After headers were returned on any probe. The origin sits
+    behind Cloudflare and Kinsta edge caching (ki-edge, x-kinsta-cache headers observed), so
+    throttling, if any, is applied at the edge and is not signalled to the client. No rate-limits
+    artifact is emitted because there is nothing published to record.
+
+caching:
+  detail: >-
+    REST responses are sent with Cache-Control - no-store, no-cache, must-revalidate and an expired
+    Expires header, so they are not client-cacheable. Edge headers observed - cf-cache-status -
+    DYNAMIC, ki-cf-cache-status - BYPASS, x-kinsta-cache - HIT.
+
+cors:
+  access_control_allow_headers: [Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type]
+  access_control_expose_headers: [X-WP-Total, X-WP-TotalPages, Link]
+  vary: [Accept-Encoding, accept, content-type, Origin]
+
+request_tracing:
+  request_id_header: none
+  detail: >-
+    No correlation or request-id header is returned. Cloudflare's cf-ray is present and is the only
+    per-request identifier available for support conversations.
+
+robots:
+  x_robots_tag: noindex
+  detail: REST responses are served with X-Robots-Tag - noindex; the HTML site itself is fully crawlable.
+
+self_description:
+  detail: >-
+    Every route answers HTTP OPTIONS with its own machine-readable description - the accepted methods,
+    the full args map with types, enums, defaults and bounds, and the item JSON Schema. This is the
+    contract source the OpenAPI in this repo was derived from, and it is the most useful convention
+    on this surface for an agent - discovery does not require the OpenAPI at all.

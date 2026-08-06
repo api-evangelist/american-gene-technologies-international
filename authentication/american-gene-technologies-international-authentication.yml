@@ -1,0 +1,16 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/american-gene-technologies-international-content-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: applicationPassword
+  type: http
+  scheme: basic
+  description: WordPress Application Passwords (RFC 7617 Basic over TLS). Advertised by the
+    API index at authentication.application-passwords with the authorization endpoint https://www.americangene.com/wp-admin/authorize-application.php.
+    Not required for any operation in this document — every operation modelled here is anonymously
+    readable.
+  sources:
+  - openapi/american-gene-technologies-international-content-openapi.yml

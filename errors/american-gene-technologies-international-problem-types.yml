@@ -1,0 +1,77 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  Live error responses observed against https://www.americangene.com/wp-json/wp/v2/* on 2026-08-06,
+  cross-checked with openapi/american-gene-technologies-international-content-openapi.yml.
+format: wordpress-rest-error
+rfc9457: false
+note: >-
+  The American Gene Technologies Content API does not use RFC 9457 problem+json. It returns the
+  WordPress REST error envelope as application/json - a flat object of code (machine-readable
+  string), message (human-readable) and data (which repeats the HTTP status and, for validation
+  failures, carries per-parameter params and details maps). Every problem type below was triggered
+  and captured live; none is inferred. AGT publishes no error reference for this surface, so the
+  remediation text is derived from the observed payloads and the upstream WordPress REST API
+  Handbook.
+envelope:
+  content_type: application/json
+  fields:
+    code: Machine-readable error identifier, e.g. rest_post_invalid_id.
+    message: Human-readable sentence.
+    data.status: HTTP status code, repeated in the body.
+    data.params: 'Validation only. Map of parameter name to a human-readable reason.'
+    data.details: 'Validation only. Map of parameter name to a nested {code, message, data} object.'
+problems:
+- status: 400
+  code: rest_post_invalid_page_number
+  title: Page number beyond the end of the collection
+  message: The page number requested is larger than the number of pages available.
+  remediation: >-
+    Read X-WP-TotalPages from the first response and stop paging at that value, or follow the Link
+    header rel="next" until it is absent.
+  observed_at: https://www.americangene.com/wp-json/wp/v2/gene_therapies?page=99
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_gene_therapies
+- status: 400
+  code: rest_invalid_param
+  title: Parameter failed validation
+  message: 'Invalid parameter(s): <name>'
+  nested_codes:
+  - code: rest_out_of_bounds
+    example: per_page must be between 1 (inclusive) and 100 (inclusive)
+  - code: rest_not_in_enum
+    example: orderby is not one of author, date, id, include, modified, parent, relevance, slug,
+      include_slugs, and title.
+  remediation: >-
+    Read data.details[<param>].code to branch programmatically. Every accepted value, bound and enum
+    is published by the route's own OPTIONS response, so a client can validate before sending.
+  observed_at: https://www.americangene.com/wp-json/wp/v2/gene_therapies?per_page=500
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#list_gene_therapies
+- status: 404
+  code: rest_post_invalid_id
+  title: No item with that ID
+  message: Invalid post ID.
+  remediation: >-
+    IDs are site-scoped WordPress post IDs and are not contiguous. Resolve an ID from a collection
+    listing, from /wp/v2/search, or from the _links.self href on a related item rather than guessing.
+  observed_at: https://www.americangene.com/wp-json/wp/v2/gene_therapies/999999
+  source_operation: openapi/american-gene-technologies-international-content-openapi.yml#get_gene_therapies
+- status: 404
+  code: rest_no_route
+  title: No route matches the URL and method
+  message: No route was found matching the URL and request method.
+  remediation: >-
+    Fetch the route index at https://www.americangene.com/wp-json/ and match against the published
+    routes map. This is also the error returned for a namespace the site does not register - for
+    example /wp-json/mcp.
+  observed_at: https://www.americangene.com/wp-json/wp/v2/nonexistent
+- status: 401
+  code: rest_forbidden
+  title: Operation requires authentication
+  message: Sorry, you are not allowed to do that.
+  remediation: >-
+    The operation is outside the anonymous surface. This profile models only anonymously readable
+    operations; write routes and the plugin administration surface are excluded by design.
+  observed_at: https://www.americangene.com/wp-json/gf/v2/forms
+  note: >-
+    Returned by the Gravity Forms namespace (gf/v2) and by the WordPress write routes. Note the
+    status is 401 rather than 403 even though the code reads "forbidden".

@@ -1,0 +1,184 @@
+generated: '2026-08-06'
+method: probed
+source: >-
+  Live anonymous GET requests against https://www.americangene.com/wp-json on 2026-08-06. Every
+  request and response fragment below was actually executed; payloads are verbatim (trimmed with
+  _fields where noted, never edited).
+note: >-
+  The derived OpenAPI in this repo carries schemas but no in-spec examples, because the provider's
+  OPTIONS self-description supplies schemas only. These are real captured request/response pairs an
+  agent or integrator can replay unauthenticated.
+
+examples:
+- name: List gene therapy reference entries
+  operationId: list_gene_therapies
+  request:
+    method: GET
+    url: https://www.americangene.com/wp-json/wp/v2/gene_therapies?_fields=id,slug,link,date,gene_therapy_phase&per_page=4
+    headers: {}
+  response:
+    status: 200
+    headers:
+      X-WP-Total: '4'
+      X-WP-TotalPages: '1'
+      Content-Type: application/json; charset=UTF-8
+    body:
+    - id: 3540
+      date: '2020-11-09T14:39:17'
+      slug: zynteglo
+      link: https://www.americangene.com/gene_therapies/zynteglo/
+      gene_therapy_phase: [61]
+    - id: 3538
+      date: '2020-11-09T14:33:56'
+      slug: kymriah
+      link: https://www.americangene.com/gene_therapies/kymriah/
+      gene_therapy_phase: [61]
+    - id: 3526
+      date: '2020-11-05T15:57:52'
+      slug: yescarta
+      link: https://www.americangene.com/gene_therapies/yescarta/
+      gene_therapy_phase: [61]
+    - id: 3474
+      date: '2020-10-29T10:51:56'
+      slug: zolgensma
+      link: https://www.americangene.com/gene_therapies/zolgensma/
+      gene_therapy_phase: [61]
+
+- name: Resolve the gene therapy phase term referenced above
+  operationId: list_gene_therapy_phase
+  request:
+    method: GET
+    url: https://www.americangene.com/wp-json/wp/v2/gene_therapy_phase
+  response:
+    status: 200
+    body_fragment:
+    - id: 61
+      slug: fda-approved
+      name: FDA Approved
+      count: 4
+
+- name: List the most recent news releases
+  operationId: list_news_releases
+  request:
+    method: GET
+    url: https://www.americangene.com/wp-json/wp/v2/news-releases?_fields=id,slug,date,link,title&per_page=2
+  response:
+    status: 200
+    headers:
+      X-WP-Total: '64'
+      X-WP-TotalPages: '32'
+    body:
+    - id: 7441
+      date: '2023-10-11T16:05:35'
+      slug: american-gene-technologies-to-present-at-roth-mkm-2023-healthcare-opportunities-conference
+      link: https://www.americangene.com/news-releases/american-gene-technologies-to-present-at-roth-mkm-2023-healthcare-opportunities-conference/
+      title:
+        rendered: "American Gene Technologies\xAE to Present at ROTH MKM 2023 Healthcare Opportunities\
+          \ Conference"
+    - id: 7256
+      date: '2023-08-10T08:56:53'
+      slug: addimmune-a-clinical-stage-hiv-focused-gene-therapy-company-to-go-public-through-business-combination-with-10x-capital-venture-acquisition-corp-iii
+      link: https://www.americangene.com/news-releases/addimmune-a-clinical-stage-hiv-focused-gene-therapy-company-to-go-public-through-business-combination-with-10x-capital-venture-acquisition-corp-iii/
+
+- name: List the scientific and clinical advisory board
+  operationId: list_agt_advisors
+  request:
+    method: GET
+    url: https://www.americangene.com/wp-json/wp/v2/agt_advisors?_fields=id,slug,link,title&per_page=2
+  response:
+    status: 200
+    headers:
+      X-WP-Total: '7'
+      X-WP-TotalPages: '4'
+    body:
+    - id: 1325
+      slug: ely-benaim-md
+      link: https://www.americangene.com/agt_advisors/ely-benaim-md/
+      title: {rendered: 'Ely Benaim, MD'}
+    - id: 1326
+      slug: w-david-hardy-md-aahivs
+      link: https://www.americangene.com/agt_advisors/w-david-hardy-md-aahivs/
+      title: {rendered: 'W. David Hardy, MD, AAHIVS'}
+
+- name: Cross-content search
+  operationId: search_content
+  request:
+    method: GET
+    url: https://www.americangene.com/wp-json/wp/v2/search?search=HIV&per_page=2
+  response:
+    status: 200
+    headers:
+      X-WP-Total: '409'
+    body_fragment:
+    - id: 7874
+      title: HIV Deck &#038; 2 Pager
+      url: https://www.americangene.com/hiv-deck-2-pager/
+      type: post
+      subtype: page
+    note: >-
+      Search returns stubs. Follow _links.self[0].href (here
+      https://www.americangene.com/wp-json/wp/v2/pages/7874) to fetch the full object from the
+      correct typed collection.
+
+- name: Discover the graph at runtime
+  operationId: list_types
+  request:
+    method: GET
+    url: https://www.americangene.com/wp-json/wp/v2/types
+  response:
+    status: 200
+    body_fragment:
+      gene_therapies:
+        name: Gene Therapies
+        rest_base: gene_therapies
+        taxonomies: [gene_therapy_phase]
+      patent:
+        name: patents
+        rest_base: patent
+        taxonomies: []
+      blog:
+        name: Blogs
+        rest_base: blog
+        taxonomies: [blog_categories, blog_tags, blog-post-hiv-tag, featured-media]
+
+error_examples:
+- name: Item ID does not exist
+  request: {method: GET, url: 'https://www.americangene.com/wp-json/wp/v2/gene_therapies/999999'}
+  response:
+    status: 404
+    body: {code: rest_post_invalid_id, message: Invalid post ID., data: {status: 404}}
+- name: Page beyond the end of the collection
+  request: {method: GET, url: 'https://www.americangene.com/wp-json/wp/v2/gene_therapies?page=99'}
+  response:
+    status: 400
+    body:
+      code: rest_post_invalid_page_number
+      message: The page number requested is larger than the number of pages available.
+      data: {status: 400}
+- name: per_page above the published maximum
+  request: {method: GET, url: 'https://www.americangene.com/wp-json/wp/v2/gene_therapies?per_page=500'}
+  response:
+    status: 400
+    body:
+      code: rest_invalid_param
+      message: 'Invalid parameter(s): per_page'
+      data:
+        status: 400
+        params: {per_page: per_page must be between 1 (inclusive) and 100 (inclusive)}
+        details:
+          per_page:
+            code: rest_out_of_bounds
+            message: per_page must be between 1 (inclusive) and 100 (inclusive)
+- name: Namespace not registered on this site
+  request: {method: GET, url: 'https://www.americangene.com/wp-json/wp/v2/nonexistent'}
+  response:
+    status: 404
+    body:
+      code: rest_no_route
+      message: No route was found matching the URL and request method.
+      data: {status: 404}
+- name: Authenticated-only surface
+  request: {method: GET, url: 'https://www.americangene.com/wp-json/gf/v2/forms'}
+  response:
+    status: 401
+    body: {code: rest_forbidden, message: 'Sorry, you are not allowed to do that.', data: {status: 401}}
