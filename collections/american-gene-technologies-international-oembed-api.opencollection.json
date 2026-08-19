@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "American Gene Technologies Content O Embed API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "oEmbed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get oEmbed data for a URL on this site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.americangene.com/wp-json/oembed/1.0/embed",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The URL of the resource for which to fetch oEmbed data."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "The oEmbed format to use."
+              },
+              {
+                "name": "maxwidth",
+                "value": "",
+                "type": "query",
+                "description": "The maximum width of the embed frame in pixels."
+              }
+            ]
+          },
+          "docs": "oEmbed 1.0 provider endpoint. Returns embeddable metadata (title, author, thumbnail, HTML) for any americangene.com URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

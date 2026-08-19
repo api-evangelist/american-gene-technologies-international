@@ -1,0 +1,607 @@
+{
+  "item": [
+    {
+      "id": "5e98d7d9-03ad-4a05-ac58-24f04b9ec682",
+      "name": "Blogs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f52809a4-3c77-4088-90fb-ff1c66454295",
+          "name": "List Blogs",
+          "request": {
+            "name": "List Blogs",
+            "description": {
+              "content": "AGT blog posts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "blog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Current page of the collection."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Maximum number of items to be returned in result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Limit results to those matching a string."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset the result set by a specific number of items."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order sort attribute ascending or descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "date",
+                  "description": "Sort collection by post attribute."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to posts with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to posts with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "blog_categories",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items with specific terms assigned in the blog_categories taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "blog_categories_exclude",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items except those with specific terms assigned in the blog_categories taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "blog_tags",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items with specific terms assigned in the blog_tags taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "blog_tags_exclude",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items except those with specific terms assigned in the blog_tags taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "blog-post-hiv-tag",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items with specific terms assigned in the blog-post-hiv-tag taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "blog-post-hiv-tag_exclude",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items except those with specific terms assigned in the blog-post-hiv-tag taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "featured-media",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items with specific terms assigned in the featured-media taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "featured-media_exclude",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items except those with specific terms assigned in the featured-media taxonomy."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81ab8283-d52e-43b8-beb0-4bf38f8686e5",
+              "name": "A page of Blogs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "blog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "blog_categories",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog_categories_exclude",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog_tags",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog_tags_exclude",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog-post-hiv-tag",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog-post-hiv-tag_exclude",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "featured-media",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "featured-media_exclude",
+                      "value": "<object,array>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of items in the collection.",
+                  "key": "X-WP-Total",
+                  "value": "608"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages available.",
+                  "key": "X-WP-TotalPages",
+                  "value": "608"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"1952-02-27T06:04:29.998Z\",\n    \"date_gmt\": null,\n    \"guid\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"id\": 5907,\n    \"link\": \"https://UpxshxjvGkLUgsAoYsWUOgRUBdfb.asuoaenwaTuEQ0gdxwRto98t.\",\n    \"modified\": \"1961-04-15T08:33:22.066Z\",\n    \"modified_gmt\": \"1974-04-01T03:52:10.343Z\",\n    \"slug\": \"string\",\n    \"status\": \"acf-disabled\",\n    \"type\": \"string\",\n    \"password\": \"string\",\n    \"permalink_template\": \"string\",\n    \"generated_slug\": \"string\",\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"parent\": 4508,\n    \"title\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"content\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\",\n      \"block_version\": 6081,\n      \"protected\": true\n    },\n    \"author\": 4199,\n    \"featured_media\": 2181,\n    \"meta\": {\n      \"_acf_changed\": false,\n      \"content-type\": \"\",\n      \"jetpack_post_was_ever_published\": false,\n      \"footnotes\": \"\"\n    },\n    \"template\": \"string\",\n    \"blog_categories\": [\n      5168,\n      994\n    ],\n    \"blog_tags\": [\n      2614,\n      6095\n    ],\n    \"blog-post-hiv-tag\": [\n      2335,\n      4665\n    ],\n    \"featured-media\": [\n      5360,\n      3354\n    ],\n    \"acf\": {},\n    \"jetpack_sharing_enabled\": false\n  },\n  {\n    \"date\": \"1950-11-05T10:06:50.289Z\",\n    \"date_gmt\": null,\n    \"guid\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"id\": 4187,\n    \"link\": \"http://FZzFklSmPrecRKEQLrTgVxvNFP.azapbtgW4rrsjEGYzemljV\",\n    \"modified\": \"1986-05-24T15:09:28.325Z\",\n    \"modified_gmt\": \"1959-07-10T06:53:26.271Z\",\n    \"slug\": \"string\",\n    \"status\": \"future\",\n    \"type\": \"string\",\n    \"password\": \"string\",\n    \"permalink_template\": \"string\",\n    \"generated_slug\": \"string\",\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"parent\": 7320,\n    \"title\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"content\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\",\n      \"block_version\": 9640,\n      \"protected\": false\n    },\n    \"author\": 3638,\n    \"featured_media\": 8187,\n    \"meta\": {\n      \"_acf_changed\": false,\n      \"content-type\": \"\",\n      \"jetpack_post_was_ever_published\": false,\n      \"footnotes\": \"\"\n    },\n    \"template\": \"string\",\n    \"blog_categories\": [\n      1885,\n      8879\n    ],\n    \"blog_tags\": [\n      7165,\n      609\n    ],\n    \"blog-post-hiv-tag\": [\n      9610,\n      296\n    ],\n    \"featured-media\": [\n      4086,\n      2961\n    ],\n    \"acf\": {},\n    \"jetpack_sharing_enabled\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "459a933b-7319-445b-9eb6-a8bf95e7a3a3",
+              "name": "Invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "blog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "blog_categories",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog_categories_exclude",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog_tags",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog_tags_exclude",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog-post-hiv-tag",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "blog-post-hiv-tag_exclude",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "featured-media",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "featured-media_exclude",
+                      "value": "<object,array>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6986,\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4a60c35-eef0-44aa-a842-2f2b94a3590a",
+          "name": "Get a single Blogs item",
+          "request": {
+            "name": "Get a single Blogs item",
+            "description": {
+              "content": "Retrieve one Blogs item by its numeric WordPress post ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "blog",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16f04420-d568-4dd8-b82a-ad1dc0d2e20c",
+              "name": "The requested Blogs item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "blog",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"1959-05-21T03:08:32.050Z\",\n  \"date_gmt\": \"1965-04-04T15:00:07.803Z\",\n  \"guid\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"id\": 3370,\n  \"link\": \"http://RMYAfJyAIqfjha.ajvineBtFmFnKr7S5tTDR6SCUbhm4Juoiq32AbQZYz8QlRfDz\",\n  \"modified\": \"1996-01-21T11:34:36.046Z\",\n  \"modified_gmt\": \"2022-04-21T12:48:02.224Z\",\n  \"slug\": \"string\",\n  \"status\": \"private\",\n  \"type\": \"string\",\n  \"password\": \"string\",\n  \"permalink_template\": \"string\",\n  \"generated_slug\": \"string\",\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"parent\": 4208,\n  \"title\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"content\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"block_version\": 5717,\n    \"protected\": false\n  },\n  \"author\": 4025,\n  \"featured_media\": 8421,\n  \"meta\": {\n    \"_acf_changed\": false,\n    \"content-type\": \"\",\n    \"jetpack_post_was_ever_published\": false,\n    \"footnotes\": \"\"\n  },\n  \"template\": \"string\",\n  \"blog_categories\": [\n    8908,\n    7740\n  ],\n  \"blog_tags\": [\n    8260,\n    8074\n  ],\n  \"blog-post-hiv-tag\": [\n    8404,\n    5371\n  ],\n  \"featured-media\": [\n    3098,\n    6262\n  ],\n  \"acf\": {},\n  \"jetpack_sharing_enabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "807434b8-c9f0-435d-879b-4ef57baec057",
+              "name": "No resource matched the given identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "blog",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6986,\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.americangene.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ff78d56e-a642-4829-9f55-eeef844f7e62",
+    "name": "American Gene Technologies Content Blogs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only catalogue of the public WordPress REST API served from https://www.americangene.com/wp-json. It exposes American Gene Technologies' corporate content as structured JSON: the gene therapy reference entries, the 53-item patent portfolio, 64 news releases, 75 in-the-news press items, 106 blog posts, 18 archived newsletters, the scientific and clinical advisory board, open positions, company milestones, the video library and video series, the Young Minds education series, 72 corporate pages, the 2,997-item media library, the associated taxonomies, cross-content search and the oEmbed 1.0 provider endpoint.\n\nThis is NOT a developer product American Gene Technologies markets, and there is no AGT developer portal, API reference, getting-started guide or support channel for it. It is the company site's own content surface, registered at /wp-json/ by WordPress and verified by API Evangelist to return data without credentials. Only operations that returned data anonymously are modelled here; every write route and the whole plugin-administration surface is excluded. Parameter and response schemas are taken verbatim from the OPTIONS self-description each route publishes.\n\nThe upstream contract for the wp/v2 namespace is defined by the WordPress REST API Handbook.\n\nContact Support:\n Name: American Gene Technologies",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,685 @@
+openapi: 3.2.0
+info:
+  title: American Gene Technologies Content Discovery API
+  version: wp/v2
+  summary: The anonymously readable WordPress REST content API behind americangene.com.
+  description: 'Read-only catalogue of the public WordPress REST API served from https://www.americangene.com/wp-json. It exposes American Gene Technologies'' corporate content as structured JSON: the gene therapy reference entries, the 53-item patent portfolio, 64 news releases, 75 in-the-news press items, 106 blog posts, 18 archived newsletters, the scientific and clinical advisory board, open positions, company milestones, the video library and video series, the Young Minds education series, 72 corporate pages, the 2,997-item media library, the associated taxonomies, cross-content search and the oEmbed 1.0 provider endpoint.
+
+
+    This is NOT a developer product American Gene Technologies markets, and there is no AGT developer portal, API reference, getting-started guide or support channel for it. It is the company site''s own content surface, registered at /wp-json/ by WordPress and verified by API Evangelist to return data without credentials. Only operations that returned data anonymously are modelled here; every write route and the whole plugin-administration surface is excluded. Parameter and response schemas are taken verbatim from the OPTIONS self-description each route publishes.
+
+
+    The upstream contract for the wp/v2 namespace is defined by the WordPress REST API Handbook.'
+  contact:
+    name: American Gene Technologies
+    url: https://www.americangene.com/contact-us/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://www.americangene.com/wp-json/ route index + per-route OPTIONS self-description
+  x-harvested: '2026-08-06'
+servers:
+- url: https://www.americangene.com/wp-json
+  description: Production
+security: []
+tags:
+- name: Discovery
+paths:
+  /:
+    get:
+      operationId: get_api_index
+      summary: Get the API index
+      description: 'The WordPress REST API discovery document for americangene.com: site name and description, registered namespaces, the full route index, supported authentication methods and site branding.'
+      tags:
+      - Discovery
+      parameters:
+      - name: namespace
+        in: query
+        required: false
+        description: Limit the index to a single registered namespace.
+        schema:
+          type: string
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - help
+          - embed
+          default: view
+      responses:
+        '200':
+          description: The API index.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiIndex'
+  /wp/v2/statuses:
+    get:
+      operationId: list_statuses
+      summary: List post statuses
+      description: The publication statuses registered on the site.
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: A map of status objects.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/Status'
+  /wp/v2/taxonomies:
+    get:
+      operationId: list_taxonomies
+      summary: List registered taxonomies
+      description: Every taxonomy registered on americangene.com that is exposed over REST, including gene_therapy_phase and the AGT blog/video/job/HIV tag taxonomies.
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Limit results to taxonomies associated with a specific post type.
+      responses:
+        '200':
+          description: A map of taxonomy objects keyed by taxonomy name.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/Taxonomy'
+  /wp/v2/types:
+    get:
+      operationId: list_types
+      summary: List registered post types
+      description: Every post type registered on americangene.com that is exposed over REST, including the AGT-specific types (gene_therapies, patent, news-releases, in-the-news, blog, agt_advisors, agtjobs, agt-newsletters, milestones, videos, video_series, young_minds).
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: A map of post type objects keyed by post type name.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/PostType'
+  /wp/v2/types/{type}:
+    get:
+      operationId: get_type
+      summary: Get a registered post type
+      description: Retrieve one registered post type by name.
+      tags:
+      - Discovery
+      parameters:
+      - name: type
+        in: path
+        required: true
+        description: An alphanumeric identifier for the post type.
+        schema:
+          type: string
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - edit
+          - embed
+          default: view
+      responses:
+        '200':
+          description: The requested post type.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostType'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/users:
+    get:
+      operationId: list_users
+      summary: List public content authors
+      description: Users who have authored published content on americangene.com. Verified to return HTTP 200 anonymously in the public view context (2 authors).
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        description: Current page of the collection.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 100
+        description: Maximum number of items to be returned in result set.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Limit results to those matching a string.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        description: Ensure result set excludes specific IDs.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        description: Limit result set to specific IDs.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Offset the result set by a specific number of items.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+        description: Order sort attribute ascending or descending.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - registered_date
+          - slug
+          - include_slugs
+          - email
+          - url
+          default: name
+        description: Sort collection by user attribute.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: Limit result set to users with one or more specific slugs.
+      - name: roles
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: Limit result set to users matching at least one specific role provided. Accepts csv list or single role.
+      - name: capabilities
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: Limit result set to users matching at least one specific capability provided. Accepts csv list or single capability.
+      - name: who
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - authors
+        description: Limit result set to users who are considered authors.
+      - name: has_published_posts
+        in: query
+        required: false
+        schema:
+          type:
+          - boolean
+          - array
+          items:
+            type: string
+            enum:
+              post: post
+              page: page
+              attachment: attachment
+              nav_menu_item: nav_menu_item
+              wp_block: wp_block
+              wp_template: wp_template
+              wp_template_part: wp_template_part
+              wp_global_styles: wp_global_styles
+              wp_navigation: wp_navigation
+              wp_font_family: wp_font_family
+              wp_font_face: wp_font_face
+              feedback: feedback
+              fl-builder-template: fl-builder-template
+              videos: videos
+              blog: blog
+              agt_advisors: agt_advisors
+              agtjobs: agtjobs
+              video_series: video_series
+              young_minds: young_minds
+              gene_therapies: gene_therapies
+              milestones: milestones
+              in-the-news: in-the-news
+              news-releases: news-releases
+              agt-newsletters: agt-newsletters
+              patent: patent
+              jp_pay_order: jp_pay_order
+              jp_pay_product: jp_pay_product
+              extender_blocks: extender_blocks
+        description: Limit result set to users who have published posts.
+      responses:
+        '200':
+          description: A page of author objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+components:
+  schemas:
+    ApiIndex:
+      type: object
+      description: WordPress REST API index document.
+      properties:
+        name:
+          type: string
+          description: Site title.
+        description:
+          type: string
+          description: Site tagline.
+        url:
+          type: string
+          format: uri
+        home:
+          type: string
+          format: uri
+        gmt_offset:
+          type: number
+        timezone_string:
+          type: string
+        namespaces:
+          type: array
+          items:
+            type: string
+          description: Registered REST namespaces.
+        authentication:
+          type: object
+          additionalProperties: true
+          description: Supported authentication methods.
+        routes:
+          type: object
+          additionalProperties: true
+          description: The full route index.
+        site_icon_url:
+          type: string
+          format: uri
+    Status:
+      title: status
+      type: object
+      properties:
+        name:
+          description: The title for the status.
+          type: string
+        private:
+          description: Whether posts with this status should be private.
+          type: boolean
+        protected:
+          description: Whether posts with this status should be protected.
+          type: boolean
+        public:
+          description: Whether posts of this status should be shown in the front end of the site.
+          type: boolean
+        queryable:
+          description: Whether posts with this status should be publicly-queryable.
+          type: boolean
+        show_in_list:
+          description: Whether to include posts in the edit listing for their post type.
+          type: boolean
+        slug:
+          description: An alphanumeric identifier for the status.
+          type: string
+        date_floating:
+          description: Whether posts of this status may have floating published dates.
+          type: boolean
+    Taxonomy:
+      title: taxonomy
+      type: object
+      properties:
+        capabilities:
+          description: All capabilities used by the taxonomy.
+          type: object
+        description:
+          description: A human-readable description of the taxonomy.
+          type: string
+        hierarchical:
+          description: Whether or not the taxonomy should have children.
+          type: boolean
+        labels:
+          description: Human-readable labels for the taxonomy for various contexts.
+          type: object
+        name:
+          description: The title for the taxonomy.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the taxonomy.
+          type: string
+        show_cloud:
+          description: Whether or not the term cloud should be displayed.
+          type: boolean
+        types:
+          description: Types associated with the taxonomy.
+          type: array
+          items:
+            type: string
+        rest_base:
+          description: REST base route for the taxonomy.
+          type: string
+        rest_namespace:
+          description: REST namespace route for the taxonomy.
+          type: string
+        visibility:
+          description: The visibility settings for the taxonomy.
+          type: object
+          properties:
+            public:
+              description: Whether a taxonomy is intended for use publicly either via the admin interface or by front-end users.
+              type: boolean
+            publicly_queryable:
+              description: Whether the taxonomy is publicly queryable.
+              type: boolean
+            show_ui:
+              description: Whether to generate a default UI for managing this taxonomy.
+              type: boolean
+            show_admin_column:
+              description: Whether to allow automatic creation of taxonomy columns on associated post-types table.
+              type: boolean
+            show_in_nav_menus:
+              description: Whether to make the taxonomy available for selection in navigation menus.
+              type: boolean
+            show_in_quick_edit:
+              description: Whether to show the taxonomy in the quick/bulk edit panel.
+              type: boolean
+    PostType:
+      title: type
+      type: object
+      properties:
+        capabilities:
+          description: All capabilities used by the post type.
+          type: object
+        description:
+          description: A human-readable description of the post type.
+          type: string
+        hierarchical:
+          description: Whether or not the post type should have children.
+          type: boolean
+        viewable:
+          description: Whether or not the post type can be viewed.
+          type: boolean
+        labels:
+          description: Human-readable labels for the post type for various contexts.
+          type: object
+        name:
+          description: The title for the post type.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the post type.
+          type: string
+        supports:
+          description: All features, supported by the post type.
+          type: object
+        has_archive:
+          description: If the value is a string, the value will be used as the archive slug. If the value is false the post type has no archive.
+          type:
+          - string
+          - boolean
+        taxonomies:
+          description: Taxonomies associated with post type.
+          type: array
+          items:
+            type: string
+        rest_base:
+          description: REST base route for the post type.
+          type: string
+        rest_namespace:
+          description: REST route's namespace for the post type.
+          type: string
+        visibility:
+          description: The visibility settings for the post type.
+          type: object
+          properties:
+            show_ui:
+              description: Whether to generate a default UI for managing this post type.
+              type: boolean
+            show_in_nav_menus:
+              description: Whether to make the post type available for selection in navigation menus.
+              type: boolean
+        icon:
+          description: The icon for the post type.
+          type:
+          - string
+          - 'null'
+        template:
+          type:
+          - array
+          description: The block template associated with the post type.
+        template_lock:
+          type:
+          - string
+          - boolean
+          enum:
+          - all
+          - insert
+          - contentOnly
+          - false
+          description: The template_lock associated with the post type, or false if none.
+    Error:
+      type: object
+      description: The WordPress REST API error envelope.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+          additionalProperties: true
+      required:
+      - code
+      - message
+    User:
+      title: user
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the user.
+          type: integer
+        username:
+          description: Login name for the user.
+          type: string
+          required: true
+        name:
+          description: Display name for the user.
+          type: string
+        first_name:
+          description: First name for the user.
+          type: string
+        last_name:
+          description: Last name for the user.
+          type: string
+        email:
+          description: The email address for the user.
+          type: string
+          format: email
+          required: true
+        url:
+          description: URL of the user.
+          type: string
+          format: uri
+        description:
+          description: Description of the user.
+          type: string
+        link:
+          description: Author URL of the user.
+          type: string
+          format: uri
+        locale:
+          description: Locale for the user.
+          type: string
+          enum:
+          - ''
+          - en_US
+        nickname:
+          description: The nickname for the user.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the user.
+          type: string
+        registered_date:
+          description: Registration date for the user.
+          type: string
+          format: date-time
+        roles:
+          description: Roles assigned to the user.
+          type: array
+          items:
+            type: string
+        password:
+          description: Password for the user (never included).
+          type: string
+          required: true
+        capabilities:
+          description: All capabilities assigned to the user.
+          type: object
+        extra_capabilities:
+          description: Any extra capabilities assigned to the user.
+          type: object
+        avatar_urls:
+          description: Avatar URLs for the user.
+          type: object
+          properties:
+            '24':
+              description: Avatar URL with image size of 24 pixels.
+              type: string
+              format: uri
+            '48':
+              description: Avatar URL with image size of 48 pixels.
+              type: string
+              format: uri
+            '96':
+              description: Avatar URL with image size of 96 pixels.
+              type: string
+              format: uri
+        meta:
+          description: Meta fields.
+          type: object
+          properties:
+            persisted_preferences:
+              type: object
+              description: ''
+              default: []
+              properties:
+                _modified:
+                  description: The date and time the preferences were updated.
+                  type: string
+                  format: date-time
+              additionalProperties: true
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+  responses:
+    NotFound:
+      description: No resource matched the given identifier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords (RFC 7617 Basic over TLS). Advertised by the API index at authentication.application-passwords with the authorization endpoint https://www.americangene.com/wp-admin/authorize-application.php. Not required for any operation in this document — every operation modelled here is anonymously readable.
+externalDocs:
+  description: WordPress REST API Handbook — the upstream contract for the wp/v2 namespace.
+  url: https://developer.wordpress.org/rest-api/

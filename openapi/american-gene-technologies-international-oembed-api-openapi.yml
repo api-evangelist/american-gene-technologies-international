@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  title: American Gene Technologies Content O Embed API
+  version: wp/v2
+  summary: The anonymously readable WordPress REST content API behind americangene.com.
+  description: 'Read-only catalogue of the public WordPress REST API served from https://www.americangene.com/wp-json. It exposes American Gene Technologies'' corporate content as structured JSON: the gene therapy reference entries, the 53-item patent portfolio, 64 news releases, 75 in-the-news press items, 106 blog posts, 18 archived newsletters, the scientific and clinical advisory board, open positions, company milestones, the video library and video series, the Young Minds education series, 72 corporate pages, the 2,997-item media library, the associated taxonomies, cross-content search and the oEmbed 1.0 provider endpoint.
+
+
+    This is NOT a developer product American Gene Technologies markets, and there is no AGT developer portal, API reference, getting-started guide or support channel for it. It is the company site''s own content surface, registered at /wp-json/ by WordPress and verified by API Evangelist to return data without credentials. Only operations that returned data anonymously are modelled here; every write route and the whole plugin-administration surface is excluded. Parameter and response schemas are taken verbatim from the OPTIONS self-description each route publishes.
+
+
+    The upstream contract for the wp/v2 namespace is defined by the WordPress REST API Handbook.'
+  contact:
+    name: American Gene Technologies
+    url: https://www.americangene.com/contact-us/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://www.americangene.com/wp-json/ route index + per-route OPTIONS self-description
+  x-harvested: '2026-08-06'
+servers:
+- url: https://www.americangene.com/wp-json
+  description: Production
+security: []
+tags:
+- name: oEmbed
+paths:
+  /oembed/1.0/embed:
+    get:
+      operationId: get_oembed
+      summary: Get oEmbed data for a URL on this site
+      description: oEmbed 1.0 provider endpoint. Returns embeddable metadata (title, author, thumbnail, HTML) for any americangene.com URL.
+      tags:
+      - oEmbed
+      parameters:
+      - name: url
+        in: query
+        required: true
+        description: The URL of the resource for which to fetch oEmbed data.
+        schema:
+          type: string
+          format: uri
+      - name: format
+        in: query
+        required: false
+        description: The oEmbed format to use.
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+      - name: maxwidth
+        in: query
+        required: false
+        description: The maximum width of the embed frame in pixels.
+        schema:
+          type: integer
+          default: 600
+      responses:
+        '200':
+          description: oEmbed response document.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Error:
+      type: object
+      description: The WordPress REST API error envelope.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+          additionalProperties: true
+      required:
+      - code
+      - message
+  responses:
+    NotFound:
+      description: No resource matched the given identifier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords (RFC 7617 Basic over TLS). Advertised by the API index at authentication.application-passwords with the authorization endpoint https://www.americangene.com/wp-admin/authorize-application.php. Not required for any operation in this document — every operation modelled here is anonymously readable.
+externalDocs:
+  description: WordPress REST API Handbook — the upstream contract for the wp/v2 namespace.
+  url: https://developer.wordpress.org/rest-api/

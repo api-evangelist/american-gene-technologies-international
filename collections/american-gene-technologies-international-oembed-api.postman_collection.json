@@ -1,0 +1,188 @@
+{
+  "item": [
+    {
+      "id": "4948f5e9-0dab-4e31-a37c-f6ceaa6e5a08",
+      "name": "oEmbed",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74f242f4-8605-45c4-ba5f-2f9265d234df",
+          "name": "Get oEmbed data for a URL on this site",
+          "request": {
+            "name": "Get oEmbed data for a URL on this site",
+            "description": {
+              "content": "oEmbed 1.0 provider endpoint. Returns embeddable metadata (title, author, thumbnail, HTML) for any americangene.com URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oembed",
+                "1.0",
+                "embed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL of the resource for which to fetch oEmbed data."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "The oEmbed format to use."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxwidth",
+                  "value": "600",
+                  "description": "The maximum width of the embed frame in pixels."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a5cde28-fb7e-4514-86bf-3fa71fa6ff9f",
+              "name": "oEmbed response document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oembed",
+                    "1.0",
+                    "embed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "maxwidth",
+                      "value": "600"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 510,\n  \"key_1\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec56c134-35ef-43dc-92a5-e8b0a72c1278",
+              "name": "No resource matched the given identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oembed",
+                    "1.0",
+                    "embed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "maxwidth",
+                      "value": "600"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 2458,\n    \"key_0\": false,\n    \"key_1\": 4730.463778171137\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.americangene.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e454c0e0-31c9-48c0-aef3-2beefeaa2623",
+    "name": "American Gene Technologies Content O Embed API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only catalogue of the public WordPress REST API served from https://www.americangene.com/wp-json. It exposes American Gene Technologies' corporate content as structured JSON: the gene therapy reference entries, the 53-item patent portfolio, 64 news releases, 75 in-the-news press items, 106 blog posts, 18 archived newsletters, the scientific and clinical advisory board, open positions, company milestones, the video library and video series, the Young Minds education series, 72 corporate pages, the 2,997-item media library, the associated taxonomies, cross-content search and the oEmbed 1.0 provider endpoint.\n\nThis is NOT a developer product American Gene Technologies markets, and there is no AGT developer portal, API reference, getting-started guide or support channel for it. It is the company site's own content surface, registered at /wp-json/ by WordPress and verified by API Evangelist to return data without credentials. Only operations that returned data anonymously are modelled here; every write route and the whole plugin-administration surface is excluded. Parameter and response schemas are taken verbatim from the OPTIONS self-description each route publishes.\n\nThe upstream contract for the wp/v2 namespace is defined by the WordPress REST API Handbook.\n\nContact Support:\n Name: American Gene Technologies",
+      "type": "text/plain"
+    }
+  }
+}

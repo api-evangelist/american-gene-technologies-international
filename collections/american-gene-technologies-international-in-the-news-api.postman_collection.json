@@ -1,0 +1,565 @@
+{
+  "item": [
+    {
+      "id": "32921477-3bdb-45e3-a847-d26c8983aae4",
+      "name": "In The News",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7d764f4-5194-4a2b-8513-df52794ef105",
+          "name": "List In The News",
+          "request": {
+            "name": "List In The News",
+            "description": {
+              "content": "Third-party press coverage of AGT.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "in-the-news"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Current page of the collection."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Maximum number of items to be returned in result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Limit results to those matching a string."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "menu_order",
+                  "value": "<integer>",
+                  "description": "Limit result set to posts with a specific menu_order value."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset the result set by a specific number of items."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order sort attribute ascending or descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "date",
+                  "description": "Sort collection by post attribute."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to posts with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to posts with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "in-the-news-hiv-tag",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items with specific terms assigned in the in-the-news-hiv-tag taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "in-the-news-hiv-tag_exclude",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items except those with specific terms assigned in the in-the-news-hiv-tag taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "featured-media",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items with specific terms assigned in the featured-media taxonomy."
+                },
+                {
+                  "disabled": false,
+                  "key": "featured-media_exclude",
+                  "value": "<object,array>",
+                  "description": "Limit result set to items except those with specific terms assigned in the featured-media taxonomy."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "553c0698-4400-4e13-8277-0edd8c9029ff",
+              "name": "A page of In The News.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "in-the-news"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "menu_order",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "in-the-news-hiv-tag",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "in-the-news-hiv-tag_exclude",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "featured-media",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "featured-media_exclude",
+                      "value": "<object,array>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of items in the collection.",
+                  "key": "X-WP-Total",
+                  "value": "6604"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages available.",
+                  "key": "X-WP-TotalPages",
+                  "value": "6604"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": null,\n    \"date_gmt\": \"1979-02-23T19:24:15.352Z\",\n    \"guid\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"id\": 8563,\n    \"link\": \"https://pgLAaUxMNcuwoBvVCGQyjRU.lkgnJgehyu8tFG-KGsXa4YOZYq7uKpWiqI03bKnkO2.vYQwBh2H1jvxpsiAblW40-tZ0eXxNG.k4,8\",\n    \"modified\": \"1981-09-10T11:38:48.303Z\",\n    \"modified_gmt\": \"1980-05-30T20:30:19.484Z\",\n    \"slug\": \"string\",\n    \"status\": \"spam\",\n    \"type\": \"string\",\n    \"password\": \"string\",\n    \"permalink_template\": \"string\",\n    \"generated_slug\": \"string\",\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"title\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"content\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\",\n      \"block_version\": 8000,\n      \"protected\": true\n    },\n    \"author\": 7176,\n    \"featured_media\": 700,\n    \"menu_order\": 633,\n    \"format\": \"status\",\n    \"meta\": {\n      \"_acf_changed\": false,\n      \"content-type\": \"\",\n      \"jetpack_post_was_ever_published\": false\n    },\n    \"template\": \"string\",\n    \"in-the-news-hiv-tag\": [\n      8439,\n      3049\n    ],\n    \"featured-media\": [\n      1416,\n      3874\n    ],\n    \"acf\": {},\n    \"jetpack_sharing_enabled\": true\n  },\n  {\n    \"date\": null,\n    \"date_gmt\": null,\n    \"guid\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"id\": 2877,\n    \"link\": \"https://sfzrExyaJYOdFTbfYbBPPIDCoBeQ.lkfxlkzqUFGjwstjSRDFf\",\n    \"modified\": \"1992-02-13T19:04:12.332Z\",\n    \"modified_gmt\": \"2004-02-09T09:01:23.649Z\",\n    \"slug\": \"string\",\n    \"status\": \"pending\",\n    \"type\": \"string\",\n    \"password\": \"string\",\n    \"permalink_template\": \"string\",\n    \"generated_slug\": \"string\",\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"title\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"content\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\",\n      \"block_version\": 2402,\n      \"protected\": false\n    },\n    \"author\": 6644,\n    \"featured_media\": 1247,\n    \"menu_order\": 4804,\n    \"format\": \"audio\",\n    \"meta\": {\n      \"_acf_changed\": false,\n      \"content-type\": \"\",\n      \"jetpack_post_was_ever_published\": false\n    },\n    \"template\": \"string\",\n    \"in-the-news-hiv-tag\": [\n      5260,\n      1178\n    ],\n    \"featured-media\": [\n      2509,\n      5701\n    ],\n    \"acf\": {},\n    \"jetpack_sharing_enabled\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "009ccf0c-6eaa-42f7-9089-e028e457bca7",
+              "name": "Invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "in-the-news"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "menu_order",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "in-the-news-hiv-tag",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "in-the-news-hiv-tag_exclude",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "featured-media",
+                      "value": "<object,array>"
+                    },
+                    {
+                      "key": "featured-media_exclude",
+                      "value": "<object,array>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 8197,\n    \"key_0\": 6937.014644414276,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6409f192-83d9-4314-83ec-a866b7a9627b",
+          "name": "Get a single In The News item",
+          "request": {
+            "name": "Get a single In The News item",
+            "description": {
+              "content": "Retrieve one In The News item by its numeric WordPress post ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "in-the-news",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e99de6b-bad3-4508-996a-7e59172ec376",
+              "name": "The requested In The News item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "in-the-news",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": null,\n  \"date_gmt\": null,\n  \"guid\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"id\": 8118,\n  \"link\": \"http://zSm.abzEs,x-ISo1XMFEw8qnPv.yzxkONDcElOzrSBTvapBYE2Bnc8NX1Xa8O.97b3kZO-e,-FigCWm\",\n  \"modified\": \"2026-02-13T20:43:53.629Z\",\n  \"modified_gmt\": \"2004-03-06T02:31:48.631Z\",\n  \"slug\": \"string\",\n  \"status\": \"publish\",\n  \"type\": \"string\",\n  \"password\": \"string\",\n  \"permalink_template\": \"string\",\n  \"generated_slug\": \"string\",\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"title\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"content\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"block_version\": 4007,\n    \"protected\": false\n  },\n  \"author\": 6481,\n  \"featured_media\": 78,\n  \"menu_order\": 2860,\n  \"format\": \"chat\",\n  \"meta\": {\n    \"_acf_changed\": false,\n    \"content-type\": \"\",\n    \"jetpack_post_was_ever_published\": false\n  },\n  \"template\": \"string\",\n  \"in-the-news-hiv-tag\": [\n    557,\n    79\n  ],\n  \"featured-media\": [\n    1883,\n    8354\n  ],\n  \"acf\": {},\n  \"jetpack_sharing_enabled\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17f2204a-e964-419e-bc8c-94bc6d1c9fb1",
+              "name": "No resource matched the given identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "in-the-news",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 8197,\n    \"key_0\": 6937.014644414276,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.americangene.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d1e40af0-3ae4-4685-a817-64543c1460d5",
+    "name": "American Gene Technologies Content In The News API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read-only catalogue of the public WordPress REST API served from https://www.americangene.com/wp-json. It exposes American Gene Technologies' corporate content as structured JSON: the gene therapy reference entries, the 53-item patent portfolio, 64 news releases, 75 in-the-news press items, 106 blog posts, 18 archived newsletters, the scientific and clinical advisory board, open positions, company milestones, the video library and video series, the Young Minds education series, 72 corporate pages, the 2,997-item media library, the associated taxonomies, cross-content search and the oEmbed 1.0 provider endpoint.\n\nThis is NOT a developer product American Gene Technologies markets, and there is no AGT developer portal, API reference, getting-started guide or support channel for it. It is the company site's own content surface, registered at /wp-json/ by WordPress and verified by API Evangelist to return data without credentials. Only operations that returned data anonymously are modelled here; every write route and the whole plugin-administration surface is excluded. Parameter and response schemas are taken verbatim from the OPTIONS self-description each route publishes.\n\nThe upstream contract for the wp/v2 namespace is defined by the WordPress REST API Handbook.\n\nContact Support:\n Name: American Gene Technologies",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,377 @@
+openapi: 3.2.0
+info:
+  title: American Gene Technologies Content Patents API
+  version: wp/v2
+  summary: The anonymously readable WordPress REST content API behind americangene.com.
+  description: 'Read-only catalogue of the public WordPress REST API served from https://www.americangene.com/wp-json. It exposes American Gene Technologies'' corporate content as structured JSON: the gene therapy reference entries, the 53-item patent portfolio, 64 news releases, 75 in-the-news press items, 106 blog posts, 18 archived newsletters, the scientific and clinical advisory board, open positions, company milestones, the video library and video series, the Young Minds education series, 72 corporate pages, the 2,997-item media library, the associated taxonomies, cross-content search and the oEmbed 1.0 provider endpoint.
+
+
+    This is NOT a developer product American Gene Technologies markets, and there is no AGT developer portal, API reference, getting-started guide or support channel for it. It is the company site''s own content surface, registered at /wp-json/ by WordPress and verified by API Evangelist to return data without credentials. Only operations that returned data anonymously are modelled here; every write route and the whole plugin-administration surface is excluded. Parameter and response schemas are taken verbatim from the OPTIONS self-description each route publishes.
+
+
+    The upstream contract for the wp/v2 namespace is defined by the WordPress REST API Handbook.'
+  contact:
+    name: American Gene Technologies
+    url: https://www.americangene.com/contact-us/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://www.americangene.com/wp-json/ route index + per-route OPTIONS self-description
+  x-harvested: '2026-08-06'
+servers:
+- url: https://www.americangene.com/wp-json
+  description: Production
+security: []
+tags:
+- name: Patents
+paths:
+  /wp/v2/patent:
+    get:
+      operationId: list_patent
+      summary: List Patents
+      description: AGT patent portfolio entries.
+      tags:
+      - Patents
+      parameters:
+      - name: context
+        in: query
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      - name: page
+        in: query
+        required: false
+        description: Current page of the collection.
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: per_page
+        in: query
+        required: false
+        description: Maximum number of items to be returned in result set.
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 100
+      - name: search
+        in: query
+        required: false
+        description: Limit results to those matching a string.
+        schema:
+          type: string
+      - name: after
+        in: query
+        required: false
+        description: Limit response to posts published after a given ISO8601 compliant date.
+        schema:
+          type: string
+          format: date-time
+      - name: modified_after
+        in: query
+        required: false
+        description: Limit response to posts modified after a given ISO8601 compliant date.
+        schema:
+          type: string
+          format: date-time
+      - name: before
+        in: query
+        required: false
+        description: Limit response to posts published before a given ISO8601 compliant date.
+        schema:
+          type: string
+          format: date-time
+      - name: modified_before
+        in: query
+        required: false
+        description: Limit response to posts modified before a given ISO8601 compliant date.
+        schema:
+          type: string
+          format: date-time
+      - name: exclude
+        in: query
+        required: false
+        description: Ensure result set excludes specific IDs.
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+      - name: include
+        in: query
+        required: false
+        description: Limit result set to specific IDs.
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+      - name: offset
+        in: query
+        required: false
+        description: Offset the result set by a specific number of items.
+        schema:
+          type: integer
+      - name: order
+        in: query
+        required: false
+        description: Order sort attribute ascending or descending.
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+      - name: orderby
+        in: query
+        required: false
+        description: Sort collection by post attribute.
+        schema:
+          type: string
+          enum:
+          - author
+          - date
+          - id
+          - include
+          - modified
+          - parent
+          - relevance
+          - slug
+          - include_slugs
+          - title
+          default: date
+      - name: search_columns
+        in: query
+        required: false
+        description: Array of column names to be searched.
+        schema:
+          type: array
+          default: []
+          items:
+            enum:
+            - post_title
+            - post_content
+            - post_excerpt
+            type: string
+      - name: slug
+        in: query
+        required: false
+        description: Limit result set to posts with one or more specific slugs.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: A page of Patents.
+          headers:
+            X-WP-Total:
+              description: Total number of items in the collection.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Patent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /wp/v2/patent/{id}:
+    get:
+      operationId: get_patent
+      summary: Get a single Patents item
+      description: Retrieve one Patents item by its numeric WordPress post ID.
+      tags:
+      - Patents
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the item.
+        schema:
+          type: integer
+      - name: context
+        in: query
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      responses:
+        '200':
+          description: The requested Patents item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patent'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    BadRequest:
+      description: Invalid parameter.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No resource matched the given identifier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: The WordPress REST API error envelope.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+          additionalProperties: true
+      required:
+      - code
+      - message
+    Patent:
+      title: patent
+      type: object
+      properties:
+        date:
+          description: The date the post was published, in the site's timezone.
+          type:
+          - string
+          - 'null'
+          format: date-time
+        date_gmt:
+          description: The date the post was published, as GMT.
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          description: The globally unique identifier for the post.
+          type: object
+          properties:
+            raw:
+              description: GUID for the post, as it exists in the database.
+              type: string
+            rendered:
+              description: GUID for the post, transformed for display.
+              type: string
+        id:
+          description: Unique identifier for the post.
+          type: integer
+        link:
+          description: URL to the post.
+          type: string
+          format: uri
+        modified:
+          description: The date the post was last modified, in the site's timezone.
+          type: string
+          format: date-time
+        modified_gmt:
+          description: The date the post was last modified, as GMT.
+          type: string
+          format: date-time
+        slug:
+          description: An alphanumeric identifier for the post unique to its type.
+          type: string
+        status:
+          description: A named status for the post.
+          type: string
+          enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+          - acf-disabled
+          - spam
+        type:
+          description: Type of post.
+          type: string
+        password:
+          description: A password to protect access to the content and excerpt.
+          type: string
+        permalink_template:
+          description: Permalink template for the post.
+          type: string
+        generated_slug:
+          description: Slug automatically generated from the post title.
+          type: string
+        class_list:
+          description: An array of the class names for the post container element.
+          type: array
+          items:
+            type: string
+        title:
+          description: The title for the post.
+          type: object
+          properties:
+            raw:
+              description: Title for the post, as it exists in the database.
+              type: string
+            rendered:
+              description: HTML title for the post, transformed for display.
+              type: string
+        content:
+          description: The content for the post.
+          type: object
+          properties:
+            raw:
+              description: Content for the post, as it exists in the database.
+              type: string
+            rendered:
+              description: HTML content for the post, transformed for display.
+              type: string
+            block_version:
+              description: Version of the content block format used by the post.
+              type: integer
+            protected:
+              description: Whether the content is protected with a password.
+              type: boolean
+        featured_media:
+          description: The ID of the featured media for the post.
+          type: integer
+        template:
+          description: The theme file to use to display the post.
+          type: string
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+        jetpack_sharing_enabled:
+          description: Are sharing buttons enabled?
+          type: boolean
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords (RFC 7617 Basic over TLS). Advertised by the API index at authentication.application-passwords with the authorization endpoint https://www.americangene.com/wp-admin/authorize-application.php. Not required for any operation in this document — every operation modelled here is anonymously readable.
+externalDocs:
+  description: WordPress REST API Handbook — the upstream contract for the wp/v2 namespace.
+  url: https://developer.wordpress.org/rest-api/

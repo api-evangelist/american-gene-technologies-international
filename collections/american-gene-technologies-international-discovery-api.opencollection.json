@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "American Gene Technologies Content Discovery API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the API index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.americangene.com/wp-json/",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Limit the index to a single registered namespace."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "The WordPress REST API discovery document for americangene.com: site name and description, registered namespaces, the full route index, supported authentication methods and site branding."
+        },
+        {
+          "info": {
+            "name": "List post statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.americangene.com/wp-json/wp/v2/statuses",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "The publication statuses registered on the site."
+        },
+        {
+          "info": {
+            "name": "List registered taxonomies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.americangene.com/wp-json/wp/v2/taxonomies",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to taxonomies associated with a specific post type."
+              }
+            ]
+          },
+          "docs": "Every taxonomy registered on americangene.com that is exposed over REST, including gene_therapy_phase and the AGT blog/video/job/HIV tag taxonomies."
+        },
+        {
+          "info": {
+            "name": "List registered post types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.americangene.com/wp-json/wp/v2/types",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "Every post type registered on americangene.com that is exposed over REST, including the AGT-specific types (gene_therapies, patent, news-releases, in-the-news, blog, agt_advisors, agtjobs, agt-newsletters, milestones, videos, video_series, young_minds)."
+        },
+        {
+          "info": {
+            "name": "Get a registered post type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.americangene.com/wp-json/wp/v2/types/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "An alphanumeric identifier for the post type."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve one registered post type by name."
+        },
+        {
+          "info": {
+            "name": "List public content authors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.americangene.com/wp-json/wp/v2/users",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes specific IDs."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to specific IDs."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the result set by a specific number of items."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by user attribute."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users with one or more specific slugs."
+              },
+              {
+                "name": "roles",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users matching at least one specific role provided. Accepts csv list or single role."
+              },
+              {
+                "name": "capabilities",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users matching at least one specific capability provided. Accepts csv list or single capability."
+              },
+              {
+                "name": "who",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users who are considered authors."
+              },
+              {
+                "name": "has_published_posts",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users who have published posts."
+              }
+            ]
+          },
+          "docs": "Users who have authored published content on americangene.com. Verified to return HTTP 200 anonymously in the public view context (2 authors)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
