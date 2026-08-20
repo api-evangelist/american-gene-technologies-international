@@ -35,6 +35,17 @@ tags:
 - HIV
 - Rare Disease
 - Clinical Stage
+- content-api
+tags_raw:
+- Company
+- Biotechnology
+- Life Sciences
+- Gene Therapy
+- Cell Therapy
+- Immuno-Oncology
+- HIV
+- Rare Disease
+- Clinical Stage
 - Content API
 apis:
 - aid: >-
@@ -83,6 +94,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.americangene.com/wp-json
   tags:
+  - Blog
+  tags_raw:
   - Blogs
   properties:
   - type: OpenAPI
@@ -335,6 +348,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.americangene.com/wp-json
   tags:
+  - taxonomies
+  tags_raw:
   - Taxonomies
   properties:
   - type: OpenAPI
