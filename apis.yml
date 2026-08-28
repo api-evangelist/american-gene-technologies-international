@@ -16,6 +16,17 @@ description: >-
   profile — a read-only content surface exposing the company's gene therapy reference entries,
   patent portfolio, news releases, press coverage, blog, newsletters, advisory board, milestones,
   media library and video series as structured JSON.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 image: https://www.americangene.com/wp-content/uploads/2021/03/americangenetechnologies-homepage.png
 url: https://raw.githubusercontent.com/api-evangelist/american-gene-technologies-international/refs/heads/main/apis.yml
 x-type: company
