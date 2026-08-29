@@ -154,13 +154,6 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
-  responses:
-    BadRequest:
-      description: Invalid parameter.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -239,6 +232,13 @@ components:
           - pages-hiv-tag
           - featured-media
           - newsletter-hiv-tag
+  responses:
+    BadRequest:
+      description: Invalid parameter.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     applicationPassword:
       type: http

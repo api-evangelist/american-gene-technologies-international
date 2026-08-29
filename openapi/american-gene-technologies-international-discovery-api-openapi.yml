@@ -351,70 +351,6 @@ paths:
                   $ref: '#/components/schemas/User'
 components:
   schemas:
-    ApiIndex:
-      type: object
-      description: WordPress REST API index document.
-      properties:
-        name:
-          type: string
-          description: Site title.
-        description:
-          type: string
-          description: Site tagline.
-        url:
-          type: string
-          format: uri
-        home:
-          type: string
-          format: uri
-        gmt_offset:
-          type: number
-        timezone_string:
-          type: string
-        namespaces:
-          type: array
-          items:
-            type: string
-          description: Registered REST namespaces.
-        authentication:
-          type: object
-          additionalProperties: true
-          description: Supported authentication methods.
-        routes:
-          type: object
-          additionalProperties: true
-          description: The full route index.
-        site_icon_url:
-          type: string
-          format: uri
-    Status:
-      title: status
-      type: object
-      properties:
-        name:
-          description: The title for the status.
-          type: string
-        private:
-          description: Whether posts with this status should be private.
-          type: boolean
-        protected:
-          description: Whether posts with this status should be protected.
-          type: boolean
-        public:
-          description: Whether posts of this status should be shown in the front end of the site.
-          type: boolean
-        queryable:
-          description: Whether posts with this status should be publicly-queryable.
-          type: boolean
-        show_in_list:
-          description: Whether to include posts in the edit listing for their post type.
-          type: boolean
-        slug:
-          description: An alphanumeric identifier for the status.
-          type: string
-        date_floating:
-          description: Whether posts of this status may have floating published dates.
-          type: boolean
     Taxonomy:
       title: taxonomy
       type: object
@@ -473,6 +409,63 @@ components:
             show_in_quick_edit:
               description: Whether to show the taxonomy in the quick/bulk edit panel.
               type: boolean
+    ApiIndex:
+      type: object
+      description: WordPress REST API index document.
+      properties:
+        name:
+          type: string
+          description: Site title.
+        description:
+          type: string
+          description: Site tagline.
+        url:
+          type: string
+          format: uri
+        home:
+          type: string
+          format: uri
+        gmt_offset:
+          type: number
+        timezone_string:
+          type: string
+        namespaces:
+          type: array
+          items:
+            type: string
+          description: Registered REST namespaces.
+        authentication:
+          type: object
+          additionalProperties: true
+          description: Supported authentication methods.
+        routes:
+          type: object
+          additionalProperties: true
+          description: The full route index.
+        site_icon_url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      description: The WordPress REST API error envelope.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+          additionalProperties: true
+      required:
+      - code
+      - message
     PostType:
       title: type
       type: object
@@ -546,27 +539,34 @@ components:
           - contentOnly
           - false
           description: The template_lock associated with the post type, or false if none.
-    Error:
+    Status:
+      title: status
       type: object
-      description: The WordPress REST API error envelope.
       properties:
-        code:
+        name:
+          description: The title for the status.
           type: string
-          description: A machine-readable error code, e.g. rest_post_invalid_id.
-        message:
+        private:
+          description: Whether posts with this status should be private.
+          type: boolean
+        protected:
+          description: Whether posts with this status should be protected.
+          type: boolean
+        public:
+          description: Whether posts of this status should be shown in the front end of the site.
+          type: boolean
+        queryable:
+          description: Whether posts with this status should be publicly-queryable.
+          type: boolean
+        show_in_list:
+          description: Whether to include posts in the edit listing for their post type.
+          type: boolean
+        slug:
+          description: An alphanumeric identifier for the status.
           type: string
-          description: A human-readable error message.
-        data:
-          type: object
-          description: Error context.
-          properties:
-            status:
-              type: integer
-              description: The HTTP status code.
-          additionalProperties: true
-      required:
-      - code
-      - message
+        date_floating:
+          description: Whether posts of this status may have floating published dates.
+          type: boolean
     User:
       title: user
       type: object
