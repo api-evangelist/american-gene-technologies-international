@@ -249,25 +249,6 @@ apis:
   - type: DataModel
     url: data-model/american-gene-technologies-international-data-model.yml
 - aid: >-
-    american-gene-technologies-international:american-gene-technologies-international-oembed-api
-  name: American Gene Technologies O Embed API
-  description: The oEmbed API from American Gene Technologies — 1 operation(s) for oembed.
-  humanURL: https://developer.wordpress.org/rest-api/
-  baseURL: https://www.americangene.com/wp-json
-  tags:
-  - oEmbed
-  properties:
-  - type: OpenAPI
-    url: openapi/american-gene-technologies-international-oembed-api-openapi.yml
-  - type: Authentication
-    url: authentication/american-gene-technologies-international-authentication.yml
-  - type: Conventions
-    url: conventions/american-gene-technologies-international-conventions.yml
-  - type: ErrorCatalog
-    url: errors/american-gene-technologies-international-problem-types.yml
-  - type: DataModel
-    url: data-model/american-gene-technologies-international-data-model.yml
-- aid: >-
     american-gene-technologies-international:american-gene-technologies-international-pages-api
   name: American Gene Technologies Pages API
   description: The Pages API from American Gene Technologies — 2 operation(s) for pages.
@@ -436,6 +417,25 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/american-gene-technologies-international-young-minds-api-openapi.yml
+  - type: Authentication
+    url: authentication/american-gene-technologies-international-authentication.yml
+  - type: Conventions
+    url: conventions/american-gene-technologies-international-conventions.yml
+  - type: ErrorCatalog
+    url: errors/american-gene-technologies-international-problem-types.yml
+  - type: DataModel
+    url: data-model/american-gene-technologies-international-data-model.yml
+- aid: >-
+    american-gene-technologies-international:american-gene-technologies-international-o-embed-api
+  name: American Gene Technologies o Embed API
+  description: The o Embed API from American Gene Technologies — 1 operation(s) for o embed.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.americangene.com/wp-json
+  tags:
+  - o Embed
+  properties:
+  - type: OpenAPI
+    url: openapi/american-gene-technologies-international-o-embed-api-openapi.yml
   - type: Authentication
     url: authentication/american-gene-technologies-international-authentication.yml
   - type: Conventions
