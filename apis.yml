@@ -394,6 +394,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.americangene.com/wp-json
   tags:
+  - Video
+  tags_raw:
   - Videos
   properties:
   - type: OpenAPI
@@ -432,6 +434,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.americangene.com/wp-json
   tags:
+  - oEmbed
+  tags_raw:
   - o Embed
   properties:
   - type: OpenAPI
