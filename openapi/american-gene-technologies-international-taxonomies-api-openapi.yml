@@ -3,13 +3,7 @@ info:
   title: American Gene Technologies Content Taxonomies API
   version: wp/v2
   summary: The anonymously readable WordPress REST content API behind americangene.com.
-  description: 'Read-only catalogue of the public WordPress REST API served from https://www.americangene.com/wp-json. It exposes American Gene Technologies'' corporate content as structured JSON: the gene therapy reference entries, the 53-item patent portfolio, 64 news releases, 75 in-the-news press items, 106 blog posts, 18 archived newsletters, the scientific and clinical advisory board, open positions, company milestones, the video library and video series, the Young Minds education series, 72 corporate pages, the 2,997-item media library, the associated taxonomies, cross-content search and the oEmbed 1.0 provider endpoint.
-
-
-    This is NOT a developer product American Gene Technologies markets, and there is no AGT developer portal, API reference, getting-started guide or support channel for it. It is the company site''s own content surface, registered at /wp-json/ by WordPress and verified by API Evangelist to return data without credentials. Only operations that returned data anonymously are modelled here; every write route and the whole plugin-administration surface is excluded. Parameter and response schemas are taken verbatim from the OPTIONS self-description each route publishes.
-
-
-    The upstream contract for the wp/v2 namespace is defined by the WordPress REST API Handbook.'
+  description: Read-only catalogue of the public WordPress REST API served from https://www.americangene.com/wp-json.
   contact:
     name: American Gene Technologies
     url: https://www.americangene.com/contact-us/
@@ -2530,347 +2524,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PagesHivTag:
-      title: pages-hiv-tag
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - pages-hiv-tag
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
-        acf:
-          description: ACF field data
-          type: object
-          properties: []
-    BlogPostHivTag:
-      title: blog-post-hiv-tag
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - blog-post-hiv-tag
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
-        acf:
-          description: ACF field data
-          type: object
-          properties: []
-    NewsletterHivTag:
-      title: newsletter-hiv-tag
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - newsletter-hiv-tag
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
-        acf:
-          description: ACF field data
-          type: object
-          properties: []
-    YoungMindCategories:
-      title: young_mind_categories
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - young_mind_categories
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
-        acf:
-          description: ACF field data
-          type: object
-          properties: []
-    NewReleasesHivTag:
-      title: new-releases-hiv-tag
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - new-releases-hiv-tag
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
-        acf:
-          description: ACF field data
-          type: object
-          properties: []
-    BlogTags:
-      title: blog_tags
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - blog_tags
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
-        acf:
-          description: ACF field data
-          type: object
-          properties: []
-    Agtjobcategories:
-      title: agtjobcategories
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - agtjobcategories
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
-        acf:
-          description: ACF field data
-          type: object
-          properties: []
-    FeaturedMedia:
-      title: featured-media
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - featured-media
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
-        acf:
-          description: ACF field data
-          type: object
-          properties: []
-    Error:
-      type: object
-      description: The WordPress REST API error envelope.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code, e.g. rest_post_invalid_id.
-        message:
-          type: string
-          description: A human-readable error message.
-        data:
-          type: object
-          description: Error context.
-          properties:
-            status:
-              type: integer
-              description: The HTTP status code.
-          additionalProperties: true
-      required:
-      - code
-      - message
-    Tags:
-      title: tag
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the term.
-          type: integer
-        count:
-          description: Number of published posts for the term.
-          type: integer
-        description:
-          description: HTML description of the term.
-          type: string
-        link:
-          description: URL of the term.
-          type: string
-          format: uri
-        name:
-          description: HTML title for the term.
-          type: string
-        slug:
-          description: An alphanumeric identifier for the term unique to its type.
-          type: string
-        taxonomy:
-          description: Type attribution for the term.
-          type: string
-          enum:
-          - post_tag
-        meta:
-          description: Meta fields.
-          type: object
-          properties: []
     InTheNewsHivTag:
       title: in-the-news-hiv-tag
       type: object
@@ -2943,8 +2596,8 @@ components:
           description: ACF field data
           type: object
           properties: []
-    Categories:
-      title: category
+    Agtjobcategories:
+      title: agtjobcategories
       type: object
       properties:
         id:
@@ -2970,10 +2623,7 @@ components:
           description: Type attribution for the term.
           type: string
           enum:
-          - category
-        parent:
-          description: The parent term ID.
-          type: integer
+          - agtjobcategories
         meta:
           description: Meta fields.
           type: object
@@ -2982,8 +2632,8 @@ components:
           description: ACF field data
           type: object
           properties: []
-    BlogCategories:
-      title: blog_categories
+    YoungMindCategories:
+      title: young_mind_categories
       type: object
       properties:
         id:
@@ -3009,7 +2659,7 @@ components:
           description: Type attribution for the term.
           type: string
           enum:
-          - blog_categories
+          - young_mind_categories
         meta:
           description: Meta fields.
           type: object
@@ -3018,8 +2668,8 @@ components:
           description: ACF field data
           type: object
           properties: []
-    AgtVideoCategory:
-      title: agt_video_category
+    NewsletterHivTag:
+      title: newsletter-hiv-tag
       type: object
       properties:
         id:
@@ -3045,7 +2695,75 @@ components:
           description: Type attribution for the term.
           type: string
           enum:
-          - agt_video_category
+          - newsletter-hiv-tag
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+    Tags:
+      title: tag
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - post_tag
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+    FeaturedMedia:
+      title: featured-media
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - featured-media
         meta:
           description: Meta fields.
           type: object
@@ -3090,15 +2808,291 @@ components:
           description: ACF field data
           type: object
           properties: []
+    BlogCategories:
+      title: blog_categories
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - blog_categories
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+    Error:
+      type: object
+      description: The WordPress REST API error envelope.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          description: Error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+          additionalProperties: true
+      required:
+      - code
+      - message
+    BlogPostHivTag:
+      title: blog-post-hiv-tag
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - blog-post-hiv-tag
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+    PagesHivTag:
+      title: pages-hiv-tag
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - pages-hiv-tag
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+    AgtVideoCategory:
+      title: agt_video_category
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - agt_video_category
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+    BlogTags:
+      title: blog_tags
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - blog_tags
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+    Categories:
+      title: category
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - category
+        parent:
+          description: The parent term ID.
+          type: integer
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
+    NewReleasesHivTag:
+      title: new-releases-hiv-tag
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the term.
+          type: integer
+        count:
+          description: Number of published posts for the term.
+          type: integer
+        description:
+          description: HTML description of the term.
+          type: string
+        link:
+          description: URL of the term.
+          type: string
+          format: uri
+        name:
+          description: HTML title for the term.
+          type: string
+        slug:
+          description: An alphanumeric identifier for the term unique to its type.
+          type: string
+        taxonomy:
+          description: Type attribution for the term.
+          type: string
+          enum:
+          - new-releases-hiv-tag
+        meta:
+          description: Meta fields.
+          type: object
+          properties: []
+        acf:
+          description: ACF field data
+          type: object
+          properties: []
   responses:
-    NotFound:
-      description: No resource matched the given identifier.
+    BadRequest:
+      description: Invalid parameter.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid parameter.
+    NotFound:
+      description: No resource matched the given identifier.
       content:
         application/json:
           schema:

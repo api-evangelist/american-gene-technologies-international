@@ -1,25 +1,7 @@
 {
   "provider": "american-gene-technologies-international",
   "sources": [
-    "american-gene-technologies-international-agt-jobs-api-openapi.yml",
-    "american-gene-technologies-international-agt-newsletters-api-openapi.yml",
-    "american-gene-technologies-international-blogs-api-openapi.yml",
-    "american-gene-technologies-international-discovery-api-openapi.yml",
-    "american-gene-technologies-international-gene-therapies-api-openapi.yml",
-    "american-gene-technologies-international-in-the-news-api-openapi.yml",
-    "american-gene-technologies-international-media-api-openapi.yml",
-    "american-gene-technologies-international-milestones-api-openapi.yml",
-    "american-gene-technologies-international-news-releases-api-openapi.yml",
-    "american-gene-technologies-international-oembed-api-openapi.yml",
-    "american-gene-technologies-international-pages-api-openapi.yml",
-    "american-gene-technologies-international-patents-api-openapi.yml",
-    "american-gene-technologies-international-posts-api-openapi.yml",
-    "american-gene-technologies-international-scientific-and-clinical-advisors-api-openapi.yml",
-    "american-gene-technologies-international-search-api-openapi.yml",
-    "american-gene-technologies-international-taxonomies-api-openapi.yml",
-    "american-gene-technologies-international-video-series-videos-api-openapi.yml",
-    "american-gene-technologies-international-videos-api-openapi.yml",
-    "american-gene-technologies-international-young-minds-api-openapi.yml"
+    "_ae-authored/american-gene-technologies-international-content-openapi.yml"
   ],
   "outputs": [
     "american-gene-technologies-international-agt-jobs-api-openapi.yml",
@@ -31,7 +13,6 @@
     "american-gene-technologies-international-media-api-openapi.yml",
     "american-gene-technologies-international-milestones-api-openapi.yml",
     "american-gene-technologies-international-news-releases-api-openapi.yml",
-    "american-gene-technologies-international-oembed-api-openapi.yml",
     "american-gene-technologies-international-pages-api-openapi.yml",
     "american-gene-technologies-international-patents-api-openapi.yml",
     "american-gene-technologies-international-posts-api-openapi.yml",
@@ -40,13 +21,39 @@
     "american-gene-technologies-international-taxonomies-api-openapi.yml",
     "american-gene-technologies-international-video-series-videos-api-openapi.yml",
     "american-gene-technologies-international-videos-api-openapi.yml",
-    "american-gene-technologies-international-young-minds-api-openapi.yml"
+    "american-gene-technologies-international-young-minds-api-openapi.yml",
+    "american-gene-technologies-international-oembed-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "american-gene-technologies-international-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: american-gene-technologies-international-o-embed-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 19 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "american-gene-technologies-international-agt-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-agt-newsletters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-blogs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-gene-therapies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-in-the-news-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-milestones-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-news-releases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-o-embed-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-patents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-scientific-and-clinical-advisors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-taxonomies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-video-series-videos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-videos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "american-gene-technologies-international-young-minds-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
