@@ -64,76 +64,129 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-American Gene Technologies International Inc. (AGT) is a privately held gene and cell therapy
-company founded in 2007 and headquartered at 9713 Key West Avenue, 5th Floor, Rockville, Maryland —
-a 27,000 sq ft laboratory and office across from the National Cancer Institute campus, housing a
-Vector Production Facility and a Translational Science Laboratory. AGT operates a proprietary
-lentiviral gene-delivery platform and develops cell and gene therapies for HIV, phenylketonuria
-(PKU) and solid tumors (gamma-delta T cell immuno-oncology).
+American Gene Technologies International Inc. (AGT) is a privately held gene and cell therapy company founded in 2007 and headquartered in a 27,000 square foot laboratory and office at 9713 Key West Avenue, 5th Floor, Rockville, Maryland, across from the National Cancer Institute campus and the Johns Hopkins Shady Grove campus. AGT operates a proprietary lentiviral gene-delivery platform for the rapid development of cell and gene therapies against infectious disease, cancer and inherited disorders, and runs a Vector Production Facility and a Translational Science Laboratory on site. Its programs include AGT103-T, an autologous cell therapy aimed at a functional cure for HIV, a lentivirus vector-based gene therapy for phenylketonuria (PKU), and a gamma-delta T cell immuno-oncology program (ImmunoTox) targeting hepatocellular carcinoma and other solid tumors. AGT publishes no product API, no developer portal and no API documentation, and operates no developer program. The only machine-readable surface reachable without credentials is the WordPress REST content API behind americangene.com, catalogued in this profile — a read-only content surface exposing the company's gene therapy reference entries, patent portfolio, news releases, press coverage, blog, newsletters, advisory board, milestones, media library and video series as structured JSON.
 
-## Is there an API?
+**Areas:** Company · Biotechnology · Life Sciences · Gene Therapy · Cell Therapy · Immuno-Oncology · HIV · Rare Disease · Clinical Stage · content-api
 
-**AGT publishes no product API, no developer portal and no API documentation, and runs no developer
-program.** That was verified, not assumed. Probed on 2026-08-06 and all 404 / non-resolving:
+## American Gene Technologies on APIs.io
 
-`/openapi.json` · `/swagger.json` · `/api-docs` · `/docs` · `/graphql` · `/llms.txt` ·
-`/.well-known/security.txt` · `/.well-known/openid-configuration` ·
-`/.well-known/oauth-authorization-server` · `/.well-known/oauth-protected-resource` ·
-`/.well-known/api-catalog` · `/.well-known/ai-plugin.json` · `/.well-known/agent-card.json` ·
-`/.well-known/agent.json` · `/wp-json/mcp` — and no `api.`, `docs.`, `developer(s).`, `status.`,
-`trust.` or `security.` subdomain resolves. No GitHub organization, no package on npm or PyPI, no
-Postman workspace, no CLI, no SDK.
+Everything profiled for American Gene Technologies is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/american-gene-technologies-international/](https://apis.io/providers/american-gene-technologies-international/)** — or go straight to one of the APIs or properties below.
 
-## What this profile catalogues
+### APIs (1)
 
-One real, live, machine-readable surface: the **WordPress REST content API** at
-`https://www.americangene.com/wp-json` — 576 routes across 23 namespaces, of which **68 read
-operations** were verified to return data anonymously. It is a platform default (WordPress core and
-its plugins), not something AGT markets — but the content in it is first-party, because the site
-build registered AGT-specific custom post types with `show_in_rest`:
+- [American Gene Technologies Website (WordPress REST)](https://apis.io/apis/american-gene-technologies-international/americangene-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the American Gene Technologies website at www.americangene.com: the route index of the site's content management…
 
-| Collection | Path | Items (2026-08-06) |
-|---|---|---|
-| Blog posts | `/wp/v2/blog` | 106 |
-| In the news | `/wp/v2/in-the-news` | 75 |
-| News releases | `/wp/v2/news-releases` | 64 |
-| Patents | `/wp/v2/patent` | 53 |
-| Newsletters | `/wp/v2/agt-newsletters` | 18 |
-| Advisory board | `/wp/v2/agt_advisors` | 7 |
-| Videos | `/wp/v2/videos` | 5 |
-| Gene therapy reference entries | `/wp/v2/gene_therapies` | 4 |
-| Young Minds explainers | `/wp/v2/young_minds` | 4 |
-| Milestones | `/wp/v2/milestones` | 1 |
-| Corporate pages | `/wp/v2/pages` | 72 |
-| Media library | `/wp/v2/media` | 2,997 |
-| Search index | `/wp/v2/search` | 409 |
+### Published properties
 
-Two traps worth knowing: the core `/wp/v2/posts` collection is **empty** (the blog lives on the
-custom `blog` type), and `/wp/v2/gene_therapies` lists **approved third-party** therapies
-(Zolgensma, Yescarta, Kymriah, Zynteglo) published as educational context — not AGT's own pipeline.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Artifacts
+#### MCP servers (1)
 
-| Path | What it is |
+Model Context Protocol servers that expose the API to agents.
+
+- [american-gene-technologies-content](https://apis.io/servers/american-gene-technologies-international/american-gene-technologies-content/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [American Gene Technologies International Agentic Access](https://apis.io/agentic-access/american-gene-technologies-international/american-gene-technologies-international-agentic-access/)
+
+#### Collections (19)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-agt-jobs-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-agt-newsletters-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-blogs-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-discovery-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-gene-therapies-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-in-the-news-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-media-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-milestones-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-news-releases-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-oembed-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-pages-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-patents-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-posts-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-scientific-and-clinical-advisors-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-search-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-taxonomies-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-video-series-videos-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-videos-api/)
+- [Moved to /providers/american-gene-technologies-international/](https://apis.io/collections/american-gene-technologies-international/open-american-gene-technologies-international-young-minds-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [American Gene Technologies International Content Overlay](https://apis.io/overlays/american-gene-technologies-international/american-gene-technologies-international-content-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [American Gene Technologies International Authentication](https://apis.io/security/american-gene-technologies-international/american-gene-technologies-international-authentication/)
+- [American Gene Technologies International Domain Security](https://apis.io/security/american-gene-technologies-international/american-gene-technologies-international-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.americangene.com/)
+- [Support](https://www.americangene.com/contact-us/)
+- [Blog](https://www.americangene.com/blog/)
+- [Privacy policy](https://www.americangene.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 17.8** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
 |---|---|
-| `openapi/` | OpenAPI 3.1 — 68 operations, 19 tags. **Derived by API Evangelist**, not published by AGT, from the `/wp-json/` route index plus each route's own `OPTIONS` self-description (which supplies every parameter and item schema verbatim). Raw source kept in `openapi/_source/`. |
-| `overlays/` | OpenAPI Overlay 1.0.0 — the API Evangelist annotation layer on top of the derived spec. |
-| `conventions/` | Pagination, sparse fieldsets, embedding, `context`, HAL-style `_links`, caching, CORS, versioning. |
-| `errors/` | Five problem types, each triggered and captured live. WordPress `{code, message, data.status}` envelope — **not** RFC 9457. |
-| `data-model/` | 15 entities, 15 taxonomies, relationships, live item counts. |
-| `authentication/` | Application Passwords (HTTP Basic) is advertised but required by nothing modelled here. |
-| `lifecycle/` | No versioning policy, no deprecation policy, no Sunset header, no SLA, no status page — recorded honestly. |
-| `conformance/` | What this surface does and does not conform to. No compliance program is published. |
-| `examples/` | Real captured request/response pairs, including every error. |
-| `well-known/` | The `/.well-known/` probe results — all 404. An honest zero. |
-| `security/` | Live TLS/DNS probe: TLS 1.3, no HSTS, no DNSSEC, no CAA, SPF present, DMARC `p=quarantine`. |
-| `agentic-access/` | Recommended `x-agentic-access` contracts. All 68 operations classify as safe reads. |
-| `skills/` | Three packaged Agent Skills, every step grounded in a real `operationId`. |
-| `mcp/` | **Candidate only.** No MCP server exists — `/wp-json/mcp` returns `rest_no_route`. |
-| `llms/` | Generated `llms.txt` (AGT publishes none). |
+| Discoverability | 66.1 |
+| Contract quality | 7.3 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 10.5 |
 
-No `a2a/` artifact exists, and that is deliberate: no agent card was found at either well-known
-path, and an agent card is the one artifact this pipeline will never author on a provider's behalf.
+**Agent readiness 7.2** — agent-aware
 
-- https://www.americangene.com/
-- https://forgeglobal.com/american-gene-technologies-international_stock/
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/american-gene-technologies-international/](https://apis.io/providers/american-gene-technologies-international/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for American Gene Technologies: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/american-gene-technologies-international/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
